@@ -88,6 +88,23 @@ app.post('/api/images', async (req, res, next) => {
     })
 })
 
+// endpoint 17
+app.delete("/api/images/:images_id", async (req, res) => {
+    let images_id = req.params.images_id
+    let api_key = req.body
+    if (!api_key) return res.status(400).json({message: "API Key is required"})
+    let user = await User.findOne({where: {api_key: api_key}})
+    if (user == null) return res.status(400).json({message: "Invalid API Key"})
+    let imagePath = path.join(__dirname, "uploads", user.username, images_id)
+    try {
+        fs.statSync(imagePath)
+    } catch (error) {
+        return res.status(400).json({message: "Image not found"})
+    }
+    fs.rmSync(imagePath)
+    return res.status(200).json({message: "Image deleted successfully"})
+})
+
 // start
 app.listen(app.get("port"), () => {
     console.log(`Server started at http://localhost:${app.get("port")}`);
