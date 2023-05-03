@@ -2,10 +2,10 @@
   "name": "ProjectSOA",
   "version": "1.0.0",
   "description": "Project SOA",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "start": "nodemon index.js"
+    "start": "nodemon src/index.js"
   },
   "author": "220116868,220116874,220116876,220116883",
   "license": "ISC",
@@ -17,9 +17,11 @@
     "express": "^4.18.2",
     "joi": "^17.9.1",
     "jsonwebtoken": "^9.0.0",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^3.2.0",
     "nodemon": "^2.0.22",
-    "sequelize": "^6.30.0"
+    "sequelize": "^6.30.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
