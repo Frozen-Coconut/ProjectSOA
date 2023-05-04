@@ -42,16 +42,19 @@ let init = async () => {
 // express, joi, axios, jwt, path, fs, multer, uuid
 const express = require("express")
 const app = express()
-app.set("port", 3000)
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.set("port", 3000)
+const serverUrl = `http://localhost:${app.get("port")}`
 const joi = require("joi").extend(require("@joi/date"))
 const axios = require("axios")
+const baseUrl = "https://api-inference.huggingface.co/models/"
 const jwt = require("jsonwebtoken")
-const SECRET_KEY = "project_soa_6868_6874_6876_6883"
+const secretKey = "project_soa_6868_6874_6876_6883"
 const path = require("path")
 const fs = require("fs")
 mkdirIfNotExists(path.join(__dirname, "uploads"))
+mkdirIfNotExists(path.join(__dirname, "cdn"))
 const multer = require("multer")
 const diskStorage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -67,7 +70,7 @@ const uuid = require("uuid").v4
 // endpoint 16
 app.post('/api/images', async (req, res, next) => {
     let {image, api_key} = req.body
-    if (!image) return res.status(400).json({message: "An image is required"})
+    if (!image) return res.status(400).json({message: "Image is required"})
     if (!api_key) return res.status(400).json({message: "API Key is required"})
     let user = await User.findOne({where: {api_key: api_key}})
     if (user == null) return res.status(400).json({message: "Invalid API Key"})
@@ -81,7 +84,7 @@ app.post('/api/images', async (req, res, next) => {
     let basePath = path.join(__dirname, "uploads", username)
     mkdirIfNotExists(basePath)
     let id = uuid()
-    fs.renameSync(path.join(basePath, req.file.filename), path.join(basePath, `${id}${path.extname(req.file.filename)}`))
+    fs.renameSync(path.join(basePath, req.file.filename), path.join(basePath, id))
     return res.status(200).json({
         message: "Image uploaded successfully",
         id: id
@@ -105,10 +108,34 @@ app.delete("/api/images/:images_id", async (req, res) => {
     return res.status(200).json({message: "Image deleted successfully"})
 })
 
+// endpoint 18
+app.post("/api/tasks/text-to-img", async (req, res) => {
+    let {text, api_key} = req.body
+    if (!text) return res.status(400).json({message: "Text is required"})
+    if (!api_key) return res.status(400).json({message: "API Key is required"})
+    let user = await User.findOne({where: {api_key: api_key}})
+    if (user == null) return res.status(400).json({message: "Invalid API Key"})
+    let url = baseUrl + "stabilityai/stable-diffusion-2-1"
+    let result
+    try {
+        result = (await axios.post(url, {json: text}, {headers: {"Authorization": "Bearer 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", "Content-Type": "multipart/form-data"}, responseType: "arraybuffer"})).data
+    } catch (error) {
+        return res.status(400).json({message: error})
+    }
+    let id = uuid()
+    fs.writeFileSync(path.join(__dirname, "cdn", `${id}.jpg`), result)
+    return res.status(200).json({message: "Image generated successfully", url: `${serverUrl}/cdn/${id}.jpg`})
+})
+
+// endpoint cdn
+app.get("/cdn/:filename", (req, res) => {
+    return res.status(200).contentType("image/jpg").send(fs.readFileSync(path.join(__dirname, "cdn", req.params.filename)));
+})
+
 // start
 app.listen(app.get("port"), () => {
-    console.log(`Server started at http://localhost:${app.get("port")}`);
-});
+    console.log(`Server started at ${serverUrl}`)
+})
 
 // utilities
 function mkdirIfNotExists(path) {
