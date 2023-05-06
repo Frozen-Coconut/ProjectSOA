@@ -143,6 +143,26 @@ app.post("/api/tasks/image-classification", async (req, res) => {
     return res.status(200).json({message: "Image classified successfully", data: result})
 })
 
+// endpoint 20
+app.post("/api/tasks/image-classification", async (req, res) => {
+    let {image_id, api_key} = req.body
+    if (!image_id) return res.status(400).json({message: "Image ID is required"})
+    if (!api_key) return res.status(400).json({message: "API Key is required"})
+    let user = await User.findOne({where: {api_key: api_key}})
+    if (user == null) return res.status(400).json({message: "Invalid API Key"})
+    let url = baseUrl + "openmmlab/upernet-convnext-small"
+    let imagePath = path.join(__dirname, "uploads", user.username, image_id)
+    if (!checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
+    let image = fs.readFileSync(imagePath)
+    let result
+    try {
+        result = (await axios.post(url, {inputs: image}, {headers: {"Authorization": "Bearer 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", "Content-Type": "multipart/form-data"}, responseType: "arraybuffer"})).data
+    } catch (error) {
+        return res.status(400).json({message: "Image segmentation failed"})
+    }
+    return res.status(200).json({message: "Image segmented successfully", data: result})
+})
+
 // endpoint cdn
 app.get("/cdn/:filename", (req, res) => {
     return res.status(200).contentType("image/jpg").send(fs.readFileSync(path.join(__dirname, "cdn", req.params.filename)));
