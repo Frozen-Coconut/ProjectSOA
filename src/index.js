@@ -99,17 +99,13 @@ app.delete("/api/images/:images_id", async (req, res) => {
     let user = await User.findOne({where: {api_key: api_key}})
     if (user == null) return res.status(400).json({message: "Invalid API Key"})
     let imagePath = path.join(__dirname, "uploads", user.username, images_id)
-    try {
-        fs.statSync(imagePath)
-    } catch (error) {
-        return res.status(400).json({message: "Image not found"})
-    }
+    if (!checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
     fs.rmSync(imagePath)
     return res.status(200).json({message: "Image deleted successfully"})
 })
 
 // endpoint 18
-app.post("/api/tasks/text-to-img", async (req, res) => {
+app.post("/api/tasks/text-to-image", async (req, res) => {
     let {text, api_key} = req.body
     if (!text) return res.status(400).json({message: "Text is required"})
     if (!api_key) return res.status(400).json({message: "API Key is required"})
@@ -118,13 +114,33 @@ app.post("/api/tasks/text-to-img", async (req, res) => {
     let url = baseUrl + "stabilityai/stable-diffusion-2-1"
     let result
     try {
-        result = (await axios.post(url, {json: text}, {headers: {"Authorization": "Bearer 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", "Content-Type": "multipart/form-data"}, responseType: "arraybuffer"})).data
+        result = (await axios.post(url, {inputs: text}, {headers: {"Authorization": "Bearer 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", "Content-Type": "multipart/form-data"}, responseType: "arraybuffer"})).data
     } catch (error) {
-        return res.status(400).json({message: error})
+        return res.status(400).json({message: "Image generation failed"})
     }
     let id = uuid()
     fs.writeFileSync(path.join(__dirname, "cdn", `${id}.jpg`), result)
     return res.status(200).json({message: "Image generated successfully", url: `${serverUrl}/cdn/${id}.jpg`})
+})
+
+// endpoint 19
+app.post("/api/tasks/image-classification", async (req, res) => {
+    let {image_id, api_key} = req.body
+    if (!image_id) return res.status(400).json({message: "Image ID is required"})
+    if (!api_key) return res.status(400).json({message: "API Key is required"})
+    let user = await User.findOne({where: {api_key: api_key}})
+    if (user == null) return res.status(400).json({message: "Invalid API Key"})
+    let url = baseUrl + "microsoft/resnet-50"
+    let imagePath = path.join(__dirname, "uploads", user.username, image_id)
+    if (!checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
+    let image = fs.readFileSync(imagePath)
+    let result
+    try {
+        result = (await axios.post(url, {inputs: image}, {headers: {"Authorization": "Bearer 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", "Content-Type": "multipart/form-data"}, responseType: "arraybuffer"})).data
+    } catch (error) {
+        return res.status(400).json({message: "Image classification failed"})
+    }
+    return res.status(200).json({message: "Image classified successfully", data: result})
 })
 
 // endpoint cdn
@@ -138,10 +154,14 @@ app.listen(app.get("port"), () => {
 })
 
 // utilities
-function mkdirIfNotExists(path) {
+function checkIfExists(path) {
     try {
         fs.statSync(path)
     } catch (error) {
-        fs.mkdirSync(path)
+        return false
     }
+    return true
+}
+function mkdirIfNotExists(path) {
+    if (!checkIfExists(path)) fs.mkdirSync(path)
 }
