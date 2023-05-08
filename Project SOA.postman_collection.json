@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "a1211594-27be-43ee-bc5d-36bf361c0c5f",
+		"name": "Project SOA",
+		"description": "Project SOA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24656368"
+	},
+	"item": [
+		{
+			"name": "Endpoint 16",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"image_example\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{api_key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Default/Desktop/sketch.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/images",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"images"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 17",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{api_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/images/{{image_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"images",
+						"{{image_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 18",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"cdn\", jsonData.url);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{api_key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "text",
+							"value": "Himalayan mountain range",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/tasks/text-to-image",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"text-to-image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 19",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{api_key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "image_id",
+							"value": "{{image_id}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/tasks/image-classification",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"image-classification"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 20",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{api_key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "image_id",
+							"value": "{{image_id}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/tasks/image-segmentation",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"image-segmentation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint CDN",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cdn_url}}",
+					"host": [
+						"{{cdn_url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "api_key",
+			"value": "nimda",
+			"type": "string"
+		},
+		{
+			"key": "image_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "cdn_url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
