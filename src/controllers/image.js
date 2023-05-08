@@ -26,33 +26,39 @@ function mkdirIfNotExists(path) {
 
 // exports
 module.exports = {
-    endpoint16_1: async (req, res, next) => {
-        let {image, api_key} = req.body
-        if (!image) return res.status(400).json({message: "Image is required"})
-        if (!api_key) return res.status(400).json({message: "API Key is required"})
-        let user = await db.User.findOne({where: {api_key: api_key}})
-        if (user == null) return res.status(400).json({message: "Invalid API Key"})
-        let dir = fs.opendirSync(path.join(__srcpath, "uploads", user.username))
-        if (dir.length >= 10) return res.status(400).json({message: "Maximum number of images reached"})
-        dir.closeSync()
-        req.body.username = user.username
-        return next()
-    },
-    endpoint16_2: async (req, res) => {
-        let username = req.body.username
+    endpoint16: async (req, res) => {
         let basePath = path.join(__srcpath, "uploads")
-        mkdirIfNotExists(basePath)
-        mkdirIfNotExists(path.join(basePath, username))
+        let api_key = req.header("Authorization")
+        if (!api_key) {
+            fs.rmSync(path.join(basePath, req.file.filename))
+            return res.status(400).json({message: "API Key is required"})
+        }
+        let user = await db.User.findOne({where: {api_key: api_key}})
+        if (user == null) {
+            fs.rmSync(path.join(basePath, req.file.filename))
+            return res.status(400).json({message: "Invalid API Key"})
+        }
+        if (checkIfExists(path.join(basePath, user.username))) {
+            let dir = fs.readdirSync(path.join(basePath, user.username))
+            if (dir.length >= 10) {
+                fs.rmSync(path.join(basePath, req.file.filename))
+                return res.status(400).json({message: "Maximum number of images reached"})
+            }
+        }
+        if (!req.file) {
+            return res.status(400).json({message: "Invalid image"})
+        }
+        mkdirIfNotExists(path.join(basePath, user.username))
         let id = uuid()
-        fs.renameSync(path.join(basePath, req.file.filename), path.join(basePath, id))
+        fs.renameSync(path.join(basePath, req.file.filename), path.join(basePath, user.username, id))
         return res.status(200).json({
             message: "Image uploaded successfully",
             id: id
-        })
+        })  
     },
     endpoint17: async (req, res) => {
         let images_id = req.params.images_id
-        let api_key = req.body
+        let api_key = req.header("Authorization")
         if (!api_key) return res.status(400).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) return res.status(400).json({message: "Invalid API Key"})
@@ -62,15 +68,16 @@ module.exports = {
         return res.status(200).json({message: "Image deleted successfully"})
     },
     endpoint18: async (req, res) => {
-        let {text, api_key} = req.body
+        let text = req.body.text
         if (!text) return res.status(400).json({message: "Text is required"})
+        let api_key = req.header("Authorization")
         if (!api_key) return res.status(400).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) return res.status(400).json({message: "Invalid API Key"})
-        let url = baseUrl + "stabilityai/stable-diffusion-2-1"
+        let url = baseUrl + "runwayml/stable-diffusion-v1-5"
         let result
         try {
-            result = (await axios.post(url, {inputs: text}, {headers: {"Authorization": "Bearer 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", "Content-Type": "multipart/form-data"}, responseType: "arraybuffer"})).data
+            result = (await axios.post(url, {inputs: text}, {headers: {"Authorization": "Bearer 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"}, responseType: "arraybuffer"})).data
         } catch (error) {
             return res.status(400).json({message: "Image generation failed"})
         }
@@ -80,8 +87,9 @@ module.exports = {
         return res.status(200).json({message: "Image generated successfully", url: `${app.get("url")}/cdn/${id}.jpg`})
     },
     endpoint19: async (req, res) => {
-        let {image_id, api_key} = req.body
+        let image_id = req.body.image_id
         if (!image_id) return res.status(400).json({message: "Image ID is required"})
+        let api_key = req.header("Authorization")
         if (!api_key) return res.status(400).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) return res.status(400).json({message: "Invalid API Key"})
@@ -98,8 +106,9 @@ module.exports = {
         return res.status(200).json({message: "Image classified successfully", data: result})
     },
     endpoint20: async (req, res) => {
-        let {image_id, api_key} = req.body
+        let image_id = req.body.image_id
         if (!image_id) return res.status(400).json({message: "Image ID is required"})
+        let api_key = req.header("Authorization")
         if (!api_key) return res.status(400).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) return res.status(400).json({message: "Invalid API Key"})

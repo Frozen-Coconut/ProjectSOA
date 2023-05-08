@@ -2,7 +2,7 @@
 const __srcpath = __dirname.replace("\\routes", "")
 
 // controllers
-const { endpoint16_1, endpoint16_2, endpoint17, endpoint18, endpoint19, endpoint20 } = require(__srcpath +  "/controllers/image")
+const { endpoint16, endpoint17, endpoint18, endpoint19, endpoint20 } = require(__srcpath +  "/controllers/image")
 
 // imports
 const express = require("express")
@@ -20,7 +20,7 @@ const diskStorage = multer.diskStorage({
 const upload = multer({storage: diskStorage})
 
 // endpoint 16
-router.post('/images', endpoint16_1, upload.single("image"), endpoint16_2)
+router.post('/images', upload.single("image"), endpoint16)
 
 // endpoint 17
 router.delete("/images/:images_id", endpoint17)
