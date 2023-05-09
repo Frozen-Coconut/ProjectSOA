@@ -4,6 +4,9 @@ const __srcpath = __dirname.replace("\\controllers", "")
 // db
 const db = require(__srcpath + "/models/index.js")
 
+// utilities
+const fileUtil = require(__srcpath + "/utilities/file.js")
+
 // imports
 const axios = require("axios")
 const baseUrl = "https://api-inference.huggingface.co/models/"
@@ -11,19 +14,6 @@ const path = require("path")
 const fs = require("fs")
 const uuid = require("uuid").v4
 const FormData = require("form-data")
-
-// utilities
-function checkIfExists(path) {
-    try {
-        fs.statSync(path)
-    } catch (error) {
-        return false
-    }
-    return true
-}
-function mkdirIfNotExists(path) {
-    if (!checkIfExists(path)) fs.mkdirSync(path)
-}
 
 // exports
 module.exports = {
@@ -39,7 +29,7 @@ module.exports = {
             fs.rmSync(path.join(basePath, req.file.filename))
             return res.status(400).json({message: "Invalid API Key"})
         }
-        if (checkIfExists(path.join(basePath, user.username))) {
+        if (fileUtil.checkIfExists(path.join(basePath, user.username))) {
             let dir = fs.readdirSync(path.join(basePath, user.username))
             if (dir.length >= 10) {
                 fs.rmSync(path.join(basePath, req.file.filename))
@@ -49,7 +39,7 @@ module.exports = {
         if (!req.file) {
             return res.status(400).json({message: "Invalid image"})
         }
-        mkdirIfNotExists(path.join(basePath, user.username))
+        fileUtil.mkdirIfNotExists(path.join(basePath, user.username))
         let id = uuid()
         fs.renameSync(path.join(basePath, req.file.filename), path.join(basePath, user.username, id))
         return res.status(200).json({
@@ -64,7 +54,7 @@ module.exports = {
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) return res.status(400).json({message: "Invalid API Key"})
         let imagePath = path.join(__srcpath, "uploads", user.username, images_id)
-        if (!checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
+        if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
         fs.rmSync(imagePath)
         return res.status(200).json({message: "Image deleted successfully"})
     },
@@ -82,10 +72,9 @@ module.exports = {
         } catch (error) {
             return res.status(400).json({message: "Image generation failed"})
         }
-        mkdirIfNotExists(path.join(__srcpath, "cdn"))
         let id = uuid()
         fs.writeFileSync(path.join(__srcpath, "cdn", `${id}.jpg`), result)
-        return res.status(200).json({message: "Image generated successfully", url: `${app.get("url")}/cdn/${id}.jpg`})
+        return res.status(200).json({message: "Image generated successfully", url: `${process.env.URL}/cdn/${id}.jpg`})
     },
     endpoint19: async (req, res) => {
         let image_id = req.body.image_id
@@ -96,7 +85,7 @@ module.exports = {
         if (user == null) return res.status(400).json({message: "Invalid API Key"})
         let url = baseUrl + "microsoft/resnet-50"
         let imagePath = path.join(__srcpath, "uploads", user.username, image_id)
-        if (!checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
+        if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
         let image = fs.readFileSync(imagePath)
         let formData = new FormData()
         formData.append("inputs", image)
@@ -117,7 +106,7 @@ module.exports = {
         if (user == null) return res.status(400).json({message: "Invalid API Key"})
         let url = baseUrl + "openmmlab/upernet-convnext-small"
         let imagePath = path.join(__srcpath, "uploads", user.username, image_id)
-        if (!checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
+        if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
         let image = fs.readFileSync(imagePath)
         let formData = new FormData()
         formData.append("inputs", image)
