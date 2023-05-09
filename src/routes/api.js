@@ -32,7 +32,7 @@ router.post("/tasks/text-to-image", endpoint18)
 router.post("/tasks/image-classification", endpoint19)
 
 // endpoint 20
-router.post("/tasks/image-classification", endpoint20)
+router.post("/tasks/image-segmentation", endpoint20)
 
 // exports
 module.exports = router

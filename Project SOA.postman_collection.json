@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a1211594-27be-43ee-bc5d-36bf361c0c5f",
+		"_postman_id": "d0fdc1a5-4d3d-4ad5-9a82-7039487c4623",
 		"name": "Project SOA",
 		"description": "Project SOA",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -15,7 +15,7 @@
 					"script": {
 						"exec": [
 							"var jsonData = pm.response.json();\r",
-							"pm.collectionVariables.set(\"image_example\", jsonData.id);"
+							"pm.collectionVariables.set(\"image_id\", jsonData.id);"
 						],
 						"type": "text/javascript"
 					}
@@ -36,7 +36,7 @@
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/C:/Users/Default/Desktop/sketch.jpg"
+							"src": "/C:/Users/harto/Desktop/input.jpg"
 						}
 					]
 				},
@@ -86,7 +86,7 @@
 					"script": {
 						"exec": [
 							"var jsonData = pm.response.json();\r",
-							"pm.collectionVariables.set(\"cdn\", jsonData.url);"
+							"pm.collectionVariables.set(\"cdn_url\", jsonData.url);"
 						],
 						"type": "text/javascript"
 					}
