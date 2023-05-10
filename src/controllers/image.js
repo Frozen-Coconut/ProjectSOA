@@ -13,7 +13,6 @@ const baseUrl = "https://api-inference.huggingface.co/models/"
 const path = require("path")
 const fs = require("fs")
 const uuid = require("uuid").v4
-const FormData = require("form-data")
 
 // exports
 module.exports = {
@@ -87,11 +86,9 @@ module.exports = {
         let imagePath = path.join(__srcpath, "uploads", user.username, image_id)
         if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
         let image = fs.readFileSync(imagePath)
-        let formData = new FormData()
-        formData.append("inputs", image)
         let result
         try {
-            result = (await axios.post(url, formData, {headers: {"Authorization": "Bearer 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", "Content-Type": "multipart/form-data"}})).data
+            result = (await axios.post(url, image, {headers: {"Authorization": "Bearer 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", "Content-Type": "multipart/form-data"}})).data
         } catch (error) {
             return res.status(400).json({message: "Image classification failed"})
         }
@@ -108,11 +105,9 @@ module.exports = {
         let imagePath = path.join(__srcpath, "uploads", user.username, image_id)
         if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
         let image = fs.readFileSync(imagePath)
-        let formData = new FormData()
-        formData.append("inputs", image)
         let result
         try {
-            result = (await axios.post(url, formData, {headers: {"Authorization": "Bearer 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", "Content-Type": "multipart/form-data"}})).data
+            result = (await axios.post(url, image, {headers: {"Authorization": "Bearer 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", "Content-Type": "multipart/form-data"}})).data
         } catch (error) {
             return res.status(400).json({message: "Image segmentation failed"})
         }
