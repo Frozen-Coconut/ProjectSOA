@@ -18,6 +18,9 @@ module.exports = {
       api_key: {
         type: Sequelize.STRING
       },
+      api_token:{
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

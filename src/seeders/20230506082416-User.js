@@ -7,6 +7,7 @@ module.exports = {
       username: "admin",
       password: "admin",
       api_key: "nimda",
+      api_token: 20,
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
