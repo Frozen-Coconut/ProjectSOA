@@ -2,8 +2,10 @@
 const __srcpath = __dirname.replace("\\routes", "")
 
 // controllers
-const { endpoint16, endpoint17, endpoint18, endpoint19, endpoint20 } = require(__srcpath +  "/controllers/image")
 const { endpoint1, endpoint2, endpoint3} = require(__srcpath +  "/controllers/user")
+const { endpoint12, endpoint13, endpoint14, endpoint15} = require(__srcpath +  "/controllers/chatbot");
+const { endpoint16, endpoint17, endpoint18, endpoint19, endpoint20 } = require(__srcpath +  "/controllers/image")
+
 
 
 // imports
@@ -35,6 +37,19 @@ router.get("/users", endpoint3)
 
 // // endpoint 5
 // router.post("/tasks/image-segmentation", endpoint5)
+
+
+//endpoint 12
+router.post('/chats/create-new-chat', endpoint12);
+
+//endpoint 13
+router.post('/chats/create-new-profile-bot/:id_chat', endpoint13)
+
+//endpoint 14
+router.post('/chats/chatting/:id_chat', endpoint14);
+
+//endpoint 15
+router.post('/chats/history/:id_chat');
 
 // endpoint 16
 router.post('/images', upload.single("image"), endpoint16)

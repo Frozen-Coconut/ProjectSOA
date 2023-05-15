@@ -64,17 +64,18 @@ module.exports = {
 
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) {
-            return res.status(400).json({message: "Invalid API Key"})
+            return res.status(404).json({message: "Invalid API Key"})
         }
 
-        let {id_chat, profile} = req.body;
+        let {id_chat} = req.params;
+        let {profile} = req.body;
         if(!id_chat) {
             return res.status(400).json({message:"Chat ID is required"});
         }
 
         let chat = await db.Chat.findOne({where:{id:id_chat}});
         if(chat == null) {
-            return res.status(400).json({message: "Invalid Chat ID"});
+            return res.status(404).json({message: "Invalid Chat ID"});
         }
 
         if(!profile) {
@@ -89,4 +90,99 @@ module.exports = {
             profile: profile
         });
     },
+    endpoint14: async(req, res) => {
+        let api_key = req.header("Authorization")
+        if (!api_key) {
+            return res.status(400).json({message: "API Key is required"});
+        }
+
+        let user = await db.User.findOne({where: {api_key: api_key}})
+        if (user == null) {
+            return res.status(404).json({message: "Invalid API Key"})
+        }
+
+        let {id_chat} = req.params;
+        let {text} = req.body;
+        if(!id_chat) {
+            return res.status(400).json({message:"Chat ID is required"});
+        }
+
+        let chat = await db.Chat.findOne({where:{id:id_chat}});
+        if(chat == null) {
+            return res.status(404).json({message: "Invalid Chat ID"});
+        }
+
+        let url = baseUrl + "gpt2"
+
+        let inputs = `Bot name is Bob. Bot is ${chat.profile}. Please continue the chat below:\nUser:${text}\nBot:`
+
+        let data = {
+            "inputs":inputs,
+            "return_full_text":true,
+            "wait_for_model":true,
+            "temperature":0.7
+        }
+
+        let result = (await axios.post(url, data, {headers: {"Authorization": "Bearer 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"}})).data
+
+        let reply = result[0].generated_text.replace(inputs,"").split("\n")[0];
+
+        let all_chat_text = await Chat_text.findAll({where:{id_chat:id_chat}})
+
+        user.api_token -= 1;
+
+        if(user.api_token < 0) return res.status(403).json({})
+
+        await user.save();
+
+        await Chat_text.create({
+            id:`${id_chat}${(all_chat_text.length+1).toString().padStart(3,"0")}`,
+            id_chat:id_chat,
+            input:text,
+            reply:reply,
+            datetime:new Date()
+        });
+
+
+
+        return res.status(400).send({
+            Reply:reply
+        });
+    },
+    endpoint15: async(req,res) => {
+        let api_key = req.header("Authorization")
+        if (!api_key) {
+            return res.status(400).json({message: "API Key is required"});
+        }
+
+        let user = await db.User.findOne({where: {api_key: api_key}})
+        if (user == null) {
+            return res.status(400).json({message: "Invalid API Key"})
+        }
+
+        let {id_chat} = req.params;
+        if(!id_chat) {
+            return res.status(400).json({message:"Chat ID is required"});
+        }
+
+        let chat = await db.Chat.findOne({where:{id:id_chat}});
+        if(chat == null) {
+            return res.status(400).json({message: "Invalid Chat ID"});
+        }
+
+        let all_chat_text = await Chat_text.findAll({where:{id_chat:id_chat}});
+
+        let chat_log = {}
+        all_chat_text.forEach(chat => {
+            chat_log[chat.datetime.toString()] = {
+                "user":chat.text,
+                "bot":chat.reply
+            };
+        });
+
+        return res.status(200).json({
+            message:`Chat log of chat ${id_chat}`,
+            chat_log
+        })
+    }
 }
