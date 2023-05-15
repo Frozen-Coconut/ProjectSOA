@@ -41,12 +41,12 @@ module.exports = {
 
         do {
             id_chat = `${user.username.substring(0,2).toUpperCase()}${makeid(4)}`
-            let cari_chat = await db.Chat.findOne({where:{id:id_chat}});
+            let cari_chat = await db.Chat.findOne({where:{id_room:id_chat}});
             if(!cari_chat) break
         } while(true)
 
         await db.Chat.create({
-            id:id_chat,
+            id_room:id_chat,
             username:user.username,
             profile:""
         });
@@ -73,10 +73,12 @@ module.exports = {
             return res.status(400).json({message:"Chat ID is required"});
         }
 
-        let chat = await db.Chat.findOne({where:{id:id_chat}});
+        let chat = await db.Chat.findOne({where:{id_room:id_chat}});
         if(chat == null) {
             return res.status(404).json({message: "Invalid Chat ID"});
         }
+
+        if(chat.username != user.username) return res.status(404).json({message: "This chat is not yours!"});
 
         if(!profile) {
             return res.status(400).json({message:"Text Profile is required"})
@@ -107,10 +109,12 @@ module.exports = {
             return res.status(400).json({message:"Chat ID is required"});
         }
 
-        let chat = await db.Chat.findOne({where:{id:id_chat}});
+        let chat = await db.Chat.findOne({where:{id_room:id_chat}});
         if(chat == null) {
             return res.status(404).json({message: "Invalid Chat ID"});
         }
+
+        if(chat.username != user.username) return res.status(404).json({message: "This chat is not yours!"});
 
         let url = baseUrl + "gpt2"
 
@@ -170,7 +174,7 @@ module.exports = {
             return res.status(400).json({message: "Invalid Chat ID"});
         }
 
-        let all_chat_text = await Chat_text.findAll({where:{id_chat:id_chat}});
+        let all_chat_text = await Chat_text.findAll({where:{id_room:id_chat}});
 
         let chat_log = {}
         all_chat_text.forEach(chat => {
