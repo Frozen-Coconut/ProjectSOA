@@ -26,6 +26,19 @@ module.exports = {
                 message: "Ada field kosong"
             })  
         }
+
+        let checkUser;
+        checkUser = await db.User.findOne({
+            where:{
+              username: username
+            }
+        })
+        if(checkUser){
+            return res.status(400).json({
+                message: "username sudah dipakai"
+            })  
+        }
+
         let temp = String(crypto.randomUUID());
         try {
                     let user = await db.User.create({
