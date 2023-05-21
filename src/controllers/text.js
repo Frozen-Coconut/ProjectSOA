@@ -119,6 +119,44 @@ module.exports = {
         return res.status(200).json({
             message: "Berhasil update text"
         })  
-    }
+    },
+    endpoint6: async (req, res) => {
+        let {id} = req.body;
+        let api_key = req.header("Authorization");
 
+        if(!id){
+            return res.status(400).json({
+                message: "Ada field kosong"
+            })
+        }
+
+        let user = await db.User.findOne({
+            where: {
+                api_key: api_key
+            }
+        })
+
+        if(!user){
+            return res.status(404).json({
+                message: "User tidak ditemukan"
+            })
+        }
+        
+        await Text.destroy({
+            where: {
+                id: id,
+                username: user.username
+            }
+        })
+
+        return res.status(200).send({
+            message: "Berhasil delete text"
+        })
+    },
+    endpoint7: async (req, res) => {
+        let { text } = req.query
+        let api_key = req.header("Authorization");
+
+        
+    }
 }

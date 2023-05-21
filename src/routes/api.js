@@ -3,7 +3,7 @@ const __srcpath = __dirname.replace("\\routes", "")
 
 // controllers
 const { endpoint1, endpoint2, endpoint3} = require(__srcpath +  "/controllers/user")
-const { endpoint4, endpoint5} = require(__srcpath +  "/controllers/text")
+const { endpoint4, endpoint5, endpoint6} = require(__srcpath +  "/controllers/text")
 const { endpoint12, endpoint13, endpoint14, endpoint15} = require(__srcpath +  "/controllers/chatbot");
 const { endpoint16, endpoint17, endpoint18, endpoint19, endpoint20 } = require(__srcpath +  "/controllers/image")
 
@@ -39,6 +39,8 @@ router.post("/texts", endpoint4)
 // endpoint 5
 router.put("/texts/:id", endpoint5)
 
+// endpoint 6
+router.delete("/texts/:id", endpoint6)
 
 //endpoint 12
 router.post('/chats/create-new-chat', endpoint12);
