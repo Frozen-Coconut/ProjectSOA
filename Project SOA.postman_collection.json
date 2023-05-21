@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d0fdc1a5-4d3d-4ad5-9a82-7039487c4623",
+		"_postman_id": "4884d20e-90e2-4be1-a354-4a01dd5c5660",
 		"name": "Project SOA",
 		"description": "Project SOA",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -15,7 +15,15 @@
 					"script": {
 						"exec": [
 							"var jsonData = pm.response.json();\r",
-							"pm.collectionVariables.set(\"image_id\", jsonData.id);"
+							"pm.collectionVariables.set(\"image_id\", jsonData.id);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Image uploaded successfully\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -55,6 +63,25 @@
 		},
 		{
 			"name": "Endpoint 17",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Image deleted successfully\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -86,7 +113,15 @@
 					"script": {
 						"exec": [
 							"var jsonData = pm.response.json();\r",
-							"pm.collectionVariables.set(\"cdn_url\", jsonData.url);"
+							"pm.collectionVariables.set(\"cdn_url\", jsonData.url);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Image generated successfully\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -127,6 +162,25 @@
 		},
 		{
 			"name": "Endpoint 19",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Image classified successfully\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -162,6 +216,25 @@
 		},
 		{
 			"name": "Endpoint 20",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Image segmented successfully\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -197,6 +270,19 @@
 		},
 		{
 			"name": "Endpoint CDN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"image/jpg\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
