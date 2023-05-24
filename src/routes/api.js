@@ -2,9 +2,9 @@
 const __srcpath = __dirname.replace("\\routes", "")
 
 // controllers
-const { endpoint1, endpoint2, endpoint3} = require(__srcpath +  "/controllers/user")
-const { endpoint4, endpoint5, endpoint6} = require(__srcpath +  "/controllers/text")
-const { endpoint12, endpoint13, endpoint14, endpoint15} = require(__srcpath +  "/controllers/chatbot");
+const { endpoint1, endpoint2, endpoint3 } = require(__srcpath +  "/controllers/user")
+const { endpoint4, endpoint5, endpoint6, endpoint7, endpoint8, endpoint9, endpoint10, endpoint11 } = require(__srcpath +  "/controllers/text")
+const { endpoint12, endpoint13, endpoint14, endpoint15 } = require(__srcpath +  "/controllers/chatbot");
 const { endpoint16, endpoint17, endpoint18, endpoint19, endpoint20 } = require(__srcpath +  "/controllers/image")
 
 
@@ -41,6 +41,24 @@ router.put("/texts/:id", endpoint5)
 
 // endpoint 6
 router.delete("/texts/:id", endpoint6)
+
+//endpoint 7
+router.get('/texts/search-text', endpoint7)
+
+//endpoint 8
+router.get('/texts/all-text', endpoint8)
+
+//endpoint 9
+router.get('/tasks/sentiment-analysis/:id_text', endpoint9)
+
+//endpoint 10
+router.get('/tasks/text-generation/:id_text', endpoint10)
+
+//endpoint 11
+
+
+//endpoint 12
+//router.get('/tasks/named-entity-recognition/:id_text', endpoint11);
 
 //endpoint 12
 router.post('/chats/create-new-chat', endpoint12);
