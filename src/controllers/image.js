@@ -28,6 +28,10 @@ module.exports = {
             fs.rmSync(path.join(basePath, req.file.filename))
             return res.status(400).json({message: "Invalid API Key"})
         }
+        // if (user.api_token < 1) {
+        //     fs.rmSync(path.join(basePath, req.file.filename))
+        //     return res.status(400).json({message: "Insufficient API Tokens"})
+        // }
         if (fileUtil.checkIfExists(path.join(basePath, user.username))) {
             let dir = fs.readdirSync(path.join(basePath, user.username))
             if (dir.length >= 10) {
@@ -41,9 +45,12 @@ module.exports = {
         fileUtil.mkdirIfNotExists(path.join(basePath, user.username))
         let id = uuid()
         fs.renameSync(path.join(basePath, req.file.filename), path.join(basePath, user.username, id))
+        // user.api_token -= 1
+        // await user.save()
         return res.status(200).json({
             message: "Image uploaded successfully",
             id: id
+            // api_token_left: user.api_token
         })  
     },
     endpoint17: async (req, res) => {
@@ -52,10 +59,16 @@ module.exports = {
         if (!api_key) return res.status(400).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) return res.status(400).json({message: "Invalid API Key"})
+        // if (user.api_token < 1) return res.status(400).json({message: "Insufficient API Tokens"})
         let imagePath = path.join(__srcpath, "uploads", user.username, images_id)
         if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
         fs.rmSync(imagePath)
-        return res.status(200).json({message: "Image deleted successfully"})
+        // user.api_token -= 1
+        // await user.save()
+        return res.status(200).json({
+            message: "Image deleted successfully"
+            // api_token_left: user.api_token
+        })
     },
     endpoint18: async (req, res) => {
         let text = req.body.text
@@ -64,6 +77,7 @@ module.exports = {
         if (!api_key) return res.status(400).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) return res.status(400).json({message: "Invalid API Key"})
+        if (user.api_token < 1) return res.status(400).json({message: "Insufficient API Tokens"})
         let url = baseUrl + "runwayml/stable-diffusion-v1-5"
         let result
         try {
@@ -73,7 +87,13 @@ module.exports = {
         }
         let id = uuid()
         fs.writeFileSync(path.join(__srcpath, "cdn", `${id}.jpg`), result)
-        return res.status(200).json({message: "Image generated successfully", url: `${process.env.URL}/cdn/${id}.jpg`})
+        user.api_token -= 1
+        await user.save()
+        return res.status(200).json({
+            message: "Image generated successfully",
+            url: `${process.env.URL}/cdn/${id}.jpg`,
+            api_token_left: user.api_token
+        })
     },
     endpoint19: async (req, res) => {
         let image_id = req.body.image_id
@@ -82,6 +102,7 @@ module.exports = {
         if (!api_key) return res.status(400).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) return res.status(400).json({message: "Invalid API Key"})
+        if (user.api_token < 1) return res.status(400).json({message: "Insufficient API Tokens"})
         let url = baseUrl + "microsoft/resnet-50"
         let imagePath = path.join(__srcpath, "uploads", user.username, image_id)
         if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
@@ -92,7 +113,13 @@ module.exports = {
         } catch (error) {
             return res.status(400).json({message: "Image classification failed"})
         }
-        return res.status(200).json({message: "Image classified successfully", data: result})
+        user.api_token -= 1
+        await user.save()
+        return res.status(200).json({
+            message: "Image classified successfully",
+            data: result,
+            api_token_left: user.api_token
+        })
     },
     endpoint20: async (req, res) => {
         let image_id = req.body.image_id
@@ -101,6 +128,7 @@ module.exports = {
         if (!api_key) return res.status(400).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) return res.status(400).json({message: "Invalid API Key"})
+        if (user.api_token < 1) return res.status(400).json({message: "Insufficient API Tokens"})
         let url = baseUrl + "openmmlab/upernet-convnext-small"
         let imagePath = path.join(__srcpath, "uploads", user.username, image_id)
         if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
@@ -111,6 +139,12 @@ module.exports = {
         } catch (error) {
             return res.status(400).json({message: "Image segmentation failed"})
         }
-        return res.status(200).json({message: "Image segmented successfully", data: result})
+        user.api_token -= 1
+        await user.save()
+        return res.status(200).json({
+            message: "Image segmented successfully",
+            data: result,
+            api_token_left: user.api_token
+        })
     }
 }
