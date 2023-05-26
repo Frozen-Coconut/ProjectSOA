@@ -1,12 +1,153 @@
 {
 	"info": {
-		"_postman_id": "4884d20e-90e2-4be1-a354-4a01dd5c5660",
+		"_postman_id": "e868d9bf-eacd-4321-9bae-c792099400a9",
 		"name": "Project SOA",
 		"description": "Project SOA",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24656368"
+		"_exporter_id": "22732825"
 	},
 	"item": [
+		{
+			"name": "Endpoint 12",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "nimda",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/chats/create-new-chat",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"chats",
+						"create-new-chat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 13",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "nimda",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "profile",
+							"value": "polite, outgoing, fun",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/chats/create-new-profile-bot/:id_chat",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"chats",
+						"create-new-profile-bot",
+						":id_chat"
+					],
+					"variable": [
+						{
+							"key": "id_chat",
+							"value": "ADSDYe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 14",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "nimda",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "text",
+							"value": "Hi, what is your name?",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/api/chats/chatting/:id_chat",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"chats",
+						"chatting",
+						":id_chat"
+					],
+					"variable": [
+						{
+							"key": "id_chat",
+							"value": "ADSDYe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 15",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "nimda",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/chats/historys/:id_chat",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"chats",
+						"historys",
+						":id_chat"
+					],
+					"variable": [
+						{
+							"key": "id_chat",
+							"value": "ADSDYe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Endpoint 16",
 			"event": [

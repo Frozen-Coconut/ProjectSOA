@@ -55,7 +55,7 @@ router.get('/tasks/sentiment-analysis/:id_text', endpoint9)
 router.get('/tasks/text-generation/:id_text', endpoint10)
 
 //endpoint 11
-
+router.get('/tasks/named-entity-recognition/:id_text', endpoint11)
 
 //endpoint 12
 //router.get('/tasks/named-entity-recognition/:id_text', endpoint11);
@@ -70,7 +70,7 @@ router.post('/chats/create-new-profile-bot/:id_chat', endpoint13)
 router.post('/chats/chatting/:id_chat', endpoint14);
 
 //endpoint 15
-router.post('/chats/history/:id_chat');
+router.get('/chats/historys/:id_chat', endpoint15);
 
 // endpoint 16
 router.post('/images', upload.single("image"), endpoint16)

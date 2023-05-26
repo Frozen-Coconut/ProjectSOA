@@ -257,5 +257,32 @@ module.exports = {
         return res.status(200).send({
             result
         })
+    },
+    endpoint11: async(req, res) => {
+        let { id_text } = req.params
+        let api_key = req.header("Authorization");
+
+        if(!api_key){
+            return res.status(403).send({
+                message: "Unauthorized"
+            })
+        }
+
+        let text = await db.Text.findOne({
+            where: {
+                id: id_text
+            }
+        })
+
+        if(text == null) {
+            return res.status(404).send({message:"Invalid Text ID"})
+        }
+
+        let url = baseUrl + "dbmdz/bert-large-cased-finetuned-conll03-english"
+
+        const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
+        return res.status(200).send({
+            result
+        });
     }
 }

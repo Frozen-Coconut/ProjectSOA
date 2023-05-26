@@ -131,7 +131,7 @@ module.exports = {
 
         let reply = result[0].generated_text.replace(inputs,"").split("\n")[0];
 
-        let all_chat_text = await Chat_text.findAll({where:{id_chat:id_chat}})
+        let all_chat_text = await Chattext.findAll({where:{id_chat:id_chat}})
 
         user.api_token -= 1;
 
@@ -139,15 +139,12 @@ module.exports = {
 
         await user.save();
 
-        await Chat_text.create({
-            id:`${id_chat}${(all_chat_text.length+1).toString().padStart(3,"0")}`,
+        await Chattext.create({
             id_chat:id_chat,
             input:text,
             reply:reply,
             datetime:new Date()
         });
-
-
 
         return res.status(400).send({
             Reply:reply
@@ -160,6 +157,7 @@ module.exports = {
         }
 
         let user = await db.User.findOne({where: {api_key: api_key}})
+
         if (user == null) {
             return res.status(400).json({message: "Invalid API Key"})
         }
@@ -169,12 +167,13 @@ module.exports = {
             return res.status(400).json({message:"Chat ID is required"});
         }
 
-        let chat = await db.Chat.findOne({where:{id:id_chat}});
+        let chat = await db.Chat.findOne({where:{id_room:id_chat}});
+
         if(chat == null) {
             return res.status(400).json({message: "Invalid Chat ID"});
         }
 
-        let all_chat_text = await Chat_text.findAll({where:{id_room:id_chat}});
+        let all_chat_text = await Chattext.findAll({where:{id_room:id_chat}});
 
         let chat_log = {}
         all_chat_text.forEach(chat => {
