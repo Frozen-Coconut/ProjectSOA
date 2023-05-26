@@ -118,35 +118,40 @@ module.exports = {
 
         let url = baseUrl + "gpt2"
 
-        let inputs = `Bot name is Bob. Bot is ${chat.profile}. Please continue the chat below:\nUser:${text}\nBot:`
+        let inputs = `Bot name is Bob. Bot is ${chat.profile}. Please contineu this chat:\nUser:${text}\nBot:`
 
         let data = {
             "inputs":inputs,
             "return_full_text":true,
             "wait_for_model":true,
-            "temperature":0.7
+            "temperature":1,
+            "max_new_tokens":150,
         }
 
         let result = (await axios.post(url, data, {headers: {"Authorization": "Bearer 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"}})).data
 
-        let reply = result[0].generated_text.replace(inputs,"").split("\n")[0];
+        console.log(result)
 
-        let all_chat_text = await Chattext.findAll({where:{id_chat:id_chat}})
+        let reply = result[0].generated_text.replace(inputs,"").split("\n")[0].split("User:")[0].trim();
+
+        console.log(reply)
+
+        let all_chat_text = await db.Chattext.findAll({where:{id_chat:id_chat}})
 
         user.api_token -= 1;
 
-        if(user.api_token < 0) return res.status(403).json({})
+        if(user.api_token < 0) return res.status(403).json({message:"Please recharge your API Token"})
 
         await user.save();
 
-        await Chattext.create({
+        await db.Chattext.create({
             id_chat:id_chat,
             input:text,
             reply:reply,
             datetime:new Date()
         });
 
-        return res.status(400).send({
+        return res.status(200).send({
             Reply:reply
         });
     },
@@ -173,12 +178,18 @@ module.exports = {
             return res.status(400).json({message: "Invalid Chat ID"});
         }
 
-        let all_chat_text = await Chattext.findAll({where:{id_room:id_chat}});
+        let all_chat_text = await db.Chattext.findAll({
+            attributes:{
+                include:["input","reply",[
+                    db.sequelize.fn("DATE_FORMAT",db.sequelize.col("datetime"), "%d-%m-%Y %H:%i:%s"),"datetime"
+                ]]
+            },
+            where:{id_chat:id_chat}});
 
         let chat_log = {}
         all_chat_text.forEach(chat => {
             chat_log[chat.datetime.toString()] = {
-                "user":chat.text,
+                "user":chat.input,
                 "bot":chat.reply
             };
         });
