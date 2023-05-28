@@ -8,7 +8,226 @@
 	},
 	"item": [
 		{
+			"name": "Endpoint 6",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{api_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/texts/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"texts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 7",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{api_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/texts/search-text?text=bruh",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"texts",
+						"search-text"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "bruh"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 8",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{api_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/texts/all-text",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"texts",
+						"all-text"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 9",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{api_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/tasks/sentiment-analysis/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"sentiment-analysis",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 10",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{api_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/tasks/text-generation/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"text-generation",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint 11",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Chat room has been created\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Text has been identified\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "nimda",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{host}}/api/tasks/named-entity-recognition/:id_text",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"named-entity-recognition",
+						":id_text"
+					],
+					"variable": [
+						{
+							"key": "id_text",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Endpoint 12",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Chat room has been created\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Chat room has been created\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -18,6 +237,10 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
 				"url": {
 					"raw": "{{host}}/api/chats/create-new-chat",
 					"host": [
@@ -34,6 +257,35 @@
 		},
 		{
 			"name": "Endpoint 13",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Bot Profile has been updated for \"+pm.variables.get(\"id_chat\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"profile\", \"polite, outgoing, fun\");;\r",
+							"pm.variables.set(\"id_chat\", \"ADSDYe\");;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -76,6 +328,25 @@
 		},
 		{
 			"name": "Endpoint 14",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    pm.expect(jsonData).has.key(\"Reply\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -90,7 +361,7 @@
 					"urlencoded": [
 						{
 							"key": "text",
-							"value": "Hi, what is your name?",
+							"value": "My name is Billy, nice to meet you Bob",
 							"type": "text"
 						}
 					]
@@ -118,6 +389,34 @@
 		},
 		{
 			"name": "Endpoint 15",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"id_chat\", \"ADSDYe\");;"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Chat log of chat \"+pm.variables.get(\"id_chat\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [

@@ -222,11 +222,26 @@ module.exports = {
             })
         }
 
+        let user = await db.User.findOne({where: {api_key: api_key}})
+        if (user == null) {
+            return res.status(404).json({message: "Invalid API Key"})
+        }
+
         let text = await db.Text.findOne({
             where: {
                 id: id_text
             }
         })
+
+        if(text == null) {
+            return res.status(404).send({message:"Invalid Text ID"})
+        }
+
+        user.api_token -= 1;
+
+        if(user.api_token < 0) return res.status(403).json({message:"Please recharge your API Token"})
+
+        await user.save();
 
         let url = baseUrl + "distilbert-base-uncased-finetuned-sst-2-english"
 
@@ -245,27 +260,9 @@ module.exports = {
             })
         }
 
-        let text = await db.Text.findOne({
-            where: {
-                id: id_text
-            }
-        })
-
-        let url = baseUrl + "gpt2"
-
-        const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
-        return res.status(200).send({
-            result
-        })
-    },
-    endpoint11: async(req, res) => {
-        let { id_text } = req.params
-        let api_key = req.header("Authorization");
-
-        if(!api_key){
-            return res.status(403).send({
-                message: "Unauthorized"
-            })
+        let user = await db.User.findOne({where: {api_key: api_key}})
+        if (user == null) {
+            return res.status(404).json({message: "Invalid API Key"})
         }
 
         let text = await db.Text.findOne({
@@ -278,11 +275,72 @@ module.exports = {
             return res.status(404).send({message:"Invalid Text ID"})
         }
 
-        let url = baseUrl + "dbmdz/bert-large-cased-finetuned-conll03-english"
+        user.api_token -= 1;
+
+        if(user.api_token < 0) return res.status(403).json({message:"Please recharge your API Token"})
+
+        await user.save();
+
+        let url = baseUrl + "gpt2"
 
         const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
         return res.status(200).send({
             result
+        })
+    },
+    endpoint11: async(req, res) => {
+        let api_key = req.header("Authorization");
+
+        if(!api_key){
+            return res.status(403).send({
+                message: "Unauthorized"
+            })
+        }
+
+        let user = await db.User.findOne({where: {api_key: api_key}})
+        if (user == null) {
+            return res.status(404).json({message: "Invalid API Key"})
+        }
+
+        let { id_text } = req.params
+        let text = await db.Text.findOne({
+            where: {
+                id: id_text
+            }
+        })
+
+        if(text == null) {
+            return res.status(404).send({message:"Invalid Text ID"})
+        }
+
+        user.api_token -= 1;
+
+        if(user.api_token < 0) return res.status(403).json({message:"Please recharge your API Token"})
+
+        await user.save();
+
+        let url = baseUrl + "dbmdz/bert-large-cased-finetuned-conll03-english"
+
+        const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
+        
+        let text_anonymized = text;
+
+        let obj_viewed = []
+
+        result.forEach(entity => {
+            text_anonymized.replace(entity.word, `<${entity.entity_group}>`)
+
+            obj_viewed.push({
+                entity:`${entity.word} => ${entity.entity_group}`,
+                confident:`${(score*100).toFixed(2)}%`
+            })
+        });
+
+        return res.status(200).send({
+            message:"Text has been identified",
+            list_entity:obj_viewed,
+            original_text:text,
+            anonymized_text:text_anonymized
         });
     }
 }
