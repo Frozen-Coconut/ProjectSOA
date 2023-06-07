@@ -16,7 +16,7 @@ const path = require("path")
 
 // start
 app.listen(process.env.PORT, () => {
-    console.log(`Server started at ${process.env.URL}`)
+    console.log(`Server started at ${process.env.URL} (environment: ${process.env.NODE_ENV})`)
     fileUtil.mkdirIfNotExists(path.join(__srcpath, "uploads"))
     fileUtil.mkdirIfNotExists(path.join(__srcpath, "cdn"))
 })

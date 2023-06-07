@@ -7,17 +7,17 @@
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "projectsoa_test",
-    "host": "127.0.0.1",
+    "username": "freedb_ProjectSOAISTTS2023",
+    "password": "tUnC3PTEp$NYj5z",
+    "database": "freedb_ProjectSOAISTTS2023",
+    "host": "sql.freedb.tech",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "projectsoa_production",
-    "host": "127.0.0.1",
+    "username": "freedb_ProjectSOAISTTS2023",
+    "password": "tUnC3PTEp$NYj5z",
+    "database": "freedb_ProjectSOAISTTS2023",
+    "host": "sql.freedb.tech",
     "dialect": "mysql"
   }
 }

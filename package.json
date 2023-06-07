@@ -4,12 +4,14 @@
   "description": "Project SOA",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "start": "nodemon src/index.js"
+    "init": "init.bat",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "author": "220116868,220116874,220116876,220116883",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@joi/date": "^2.1.0",
     "axios": "^1.3.4",
     "bcrypt": "^5.1.0",
@@ -21,10 +23,7 @@
     "mysql2": "^3.2.0",
     "nodemon": "^2.0.22",
     "sequelize": "^6.30.0",
+    "sequelize-cli": "^6.6.1",
     "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "@faker-js/faker": "^7.6.0",
-    "sequelize-cli": "^6.6.0"
   }
 }
