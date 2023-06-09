@@ -31,7 +31,7 @@ router.post('/users/register', endpoint1)
 router.post("/users/upgrade", endpoint2)
 
 // endpoint 3
-router.get("/users", endpoint3)
+router.post("/users", endpoint3)
 
 // endpoint 4
 router.post("/texts", endpoint4)
