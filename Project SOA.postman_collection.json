@@ -16,6 +16,11 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"User registered successfully\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -63,6 +68,11 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"API Token recharged successfully\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -114,6 +124,10 @@
 							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"User logged in successfully\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -160,6 +174,11 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Text added successfully\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -207,6 +226,11 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Text updated successfully\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -255,6 +279,11 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Text deleted successfully\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -375,6 +404,11 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Text analyzed successfully\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -414,6 +448,11 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Text generated successfuly\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -482,7 +521,7 @@
 					"urlencoded": []
 				},
 				"url": {
-					"raw": "{{host}}/api/tasks/named-entity-recognition/:id_text",
+					"raw": "{{host}}/api/tasks/named-entity-recognition/1",
 					"host": [
 						"{{host}}"
 					],
@@ -490,13 +529,7 @@
 						"api",
 						"tasks",
 						"named-entity-recognition",
-						":id_text"
-					],
-					"variable": [
-						{
-							"key": "id_text",
-							"value": null
-						}
+						"1"
 					]
 				}
 			},
