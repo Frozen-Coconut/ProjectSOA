@@ -23,7 +23,7 @@ module.exports = {
 
         if(!username||!password){
             return res.status(400).json({
-                message: "Ada field kosong"
+                message: "Username and password are required"
             })  
         }
 
@@ -35,7 +35,7 @@ module.exports = {
         })
         if(checkUser){
             return res.status(400).json({
-                message: "username sudah dipakai"
+                message: "Username is not available"
             })  
         }
 
@@ -54,7 +54,7 @@ module.exports = {
         }
         
         return res.status(200).json({
-            message: "Berhasil register"
+            message: "User registered successfully"
         })  
     },
     endpoint2: async (req, res) => {
@@ -62,23 +62,23 @@ module.exports = {
         let {api_token} = req.body;
 
         if(!api_key){
-            return res.status(400).json({
-                message: "Api key tidak boleh kosong"
+            return res.status(401).json({
+                message: "API Key is required"
             }) 
         }
         if(!api_token){
             return res.status(400).json({
-                message: "Api token tidak boleh kosong"
+                message: "API Token is required"
             }) 
         }
         if(isNaN(api_token)){
             return res.status(400).json({
-                message: "Api token harus angka"
+                message: "API Token must be a number"
             }) 
         }
         if(api_token<=0){
             return res.status(400).json({
-                message: "Api token harus diatas 0"
+                message: "API Token must be greater than 0"
             }) 
         }
         let checkUser;
@@ -88,8 +88,8 @@ module.exports = {
             }
         })
         if(!checkUser){
-            return res.status(400).json({
-                message: "user tidak ditemukan"
+            return res.status(401).json({
+		    message: "Invalid API Key"
             })  
         }
         let curuser;
@@ -105,7 +105,7 @@ module.exports = {
           );
         
         return res.status(200).json({
-            message: "berhasil recharge",
+            message: "API Token recharged successfully",
             api_token: parseInt(parseInt(api_token)+checkUser.api_token)
         })  
     },
@@ -114,7 +114,7 @@ module.exports = {
 
         if(!username||!password){
             return res.status(400).json({
-                message: "Ada field kosong"
+                message: "Username and password are required"
             })  
         }
 
@@ -128,13 +128,13 @@ module.exports = {
 
             if(!checkUser){
                 return res.status(400).send({
-                    message: "user tidak ditemukan"
+                    message: "User is not found"
                 });
             }
 
             if(checkUser.password!=password){
                 return res.status(400).send({
-                    message: "password salah"
+                    message: "Incorrect password"
                 });
             }
         } catch (error) {
@@ -144,7 +144,7 @@ module.exports = {
         }
         
         return res.status(200).json({
-            message: "Berhasil login",
+            message: "User logged in successfully",
             api_key: checkUser.api_key
         })  
     },

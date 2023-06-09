@@ -22,12 +22,12 @@ module.exports = {
 
         if(!text){
             return res.status(400).json({
-                message: "Ada field kosong"
+                message: "Text is required"
             })  
         }
         if(!api_key){
-            return res.status(400).json({
-                message: "Api key tidak boleh kosong"
+            return res.status(401).json({
+                message: "API Key is required"
             }) 
         }
 
@@ -38,8 +38,8 @@ module.exports = {
             }
         })
         if(!checkUser){
-            return res.status(400).json({
-                message: "user tidak ditemukan"
+            return res.status(401).json({
+                message: "Invalid API Key"
             })  
         }
         try {
@@ -48,13 +48,13 @@ module.exports = {
                         username: checkUser.username
                     });
         } catch (error) {
-            return res.status(400).send({
+            return res.status(400).json({
               message: error
             });
         }
         
         return res.status(200).json({
-            message: "Berhasil add text"
+            message: "Text added successfully"
         })  
     },
     endpoint5: async (req, res) => {
@@ -64,12 +64,12 @@ module.exports = {
 
         if(!text||!id){
             return res.status(400).json({
-                message: "Ada field kosong"
+                message: "Text is required"
             })  
         }
         if(!api_key){
-            return res.status(400).json({
-                message: "Api key tidak boleh kosong"
+            return res.status(401).json({
+                message: "API Key is required"
             }) 
         }
 
@@ -80,8 +80,8 @@ module.exports = {
             }
         })
         if(!checkUser){
-            return res.status(400).json({
-                message: "user tidak ditemukan"
+            return res.status(401).json({
+                message: "Invalid API Key"
             })  
         }
 
@@ -93,7 +93,7 @@ module.exports = {
         })
         if(!checkText){
             return res.status(400).json({
-                message: "text tidak ditemukan"
+                message: "Text is not found"
             })  
         }
 
@@ -110,22 +110,22 @@ module.exports = {
                 }
               );
         } catch (error) {
-            return res.status(400).send({
+            return res.status(400).json({
               message: error
             });
         }
         
         return res.status(200).json({
-            message: "Berhasil update text"
+            message: "Text updated successfully"
         })  
     },
     endpoint6: async (req, res) => {
         let {id} = req.params;
         let api_key = req.header("Authorization");
 
-        if(!id){
-            return res.status(400).json({
-                message: "Ada field kosong"
+        if(!api_key){
+            return res.status(401).json({
+                message: "API Key is required"
             })
         }
 
@@ -136,8 +136,8 @@ module.exports = {
         })
 
         if(!user){
-            return res.status(404).json({
-                message: "User tidak ditemukan"
+            return res.status(401).json({
+                message: "Invalid API Key"
             })
         }
         
@@ -148,8 +148,8 @@ module.exports = {
             }
         })
 
-        return res.status(200).send({
-            message: "Berhasil delete text"
+        return res.status(200).json({
+            message: "Text deleted successfully"
         })
     },
     endpoint7: async (req, res) => {
@@ -157,8 +157,8 @@ module.exports = {
         let api_key = req.header("Authorization");
 
         if(!api_key){
-            return res.status(403).send({
-                message: "Unauthorized"
+            return res.status(401).json({
+                message: "API Key is required"
             })
         }
 
@@ -177,7 +177,7 @@ module.exports = {
             }
         })
 
-        return res.status(200).send({
+        return res.status(200).json({
             texts
         })
 
@@ -185,8 +185,8 @@ module.exports = {
     endpoint8: async (req, res) => {
         let api_key = req.header("Authorization");
         if(!api_key){
-            return res.status(403).send({
-                message: "Unauthorized"
+            return res.status(401).json({
+                message: "API Key is required"
             })
         }
 
@@ -197,8 +197,8 @@ module.exports = {
         })
 
         if(!user){
-            return res.status(404).send({
-                message: "User tidak ditemukan"
+            return res.status(401).json({
+                message: "Invalid API Key"
             })
         }
 
@@ -208,7 +208,7 @@ module.exports = {
             }
         })
 
-        return res.status(200).send({
+        return res.status(200).json({
             texts
         })
     },
@@ -217,14 +217,14 @@ module.exports = {
         let api_key = req.header("Authorization");
 
         if(!api_key){
-            return res.status(403).send({
-                message: "Unauthorized"
+            return res.status(401).json({
+                message: "API Key is required"
             })
         }
 
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) {
-            return res.status(404).json({message: "Invalid API Key"})
+            return res.status(401).json({message: "Invalid API Key"})
         }
 
         let text = await db.Text.findOne({
@@ -234,7 +234,7 @@ module.exports = {
         })
 
         if(text == null) {
-            return res.status(404).send({message:"Invalid Text ID"})
+            return res.status(404).json({message:"Invalid Text ID"})
         }
 
         user.api_token -= 1;
@@ -246,7 +246,8 @@ module.exports = {
         let url = baseUrl + "distilbert-base-uncased-finetuned-sst-2-english"
 
         const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
-        return res.status(200).send({
+        return res.status(200).json({
+	    message: "Text analyzed successfully",
             result
         })
     },
@@ -255,14 +256,14 @@ module.exports = {
         let api_key = req.header("Authorization");
 
         if(!api_key){
-            return res.status(403).send({
-                message: "Unauthorized"
+            return res.status(401).json({
+                message: "API Key is required"
             })
         }
 
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) {
-            return res.status(404).json({message: "Invalid API Key"})
+            return res.status(401).json({message: "Invalid API Key"})
         }
 
         let text = await db.Text.findOne({
@@ -272,7 +273,7 @@ module.exports = {
         })
 
         if(text == null) {
-            return res.status(404).send({message:"Invalid Text ID"})
+            return res.status(404).json({message:"Invalid Text ID"})
         }
 
         user.api_token -= 1;
@@ -284,7 +285,8 @@ module.exports = {
         let url = baseUrl + "gpt2"
 
         const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
-        return res.status(200).send({
+        return res.status(200).json({
+	    message: "Text generated successfully",
             result
         })
     },
@@ -292,14 +294,14 @@ module.exports = {
         let api_key = req.header("Authorization");
 
         if(!api_key){
-            return res.status(403).send({
-                message: "Unauthorized"
+            return res.status(401).json({
+                message: "API Key is required"
             })
         }
 
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) {
-            return res.status(404).json({message: "Invalid API Key"})
+            return res.status(401).json({message: "Invalid API Key"})
         }
 
         let { id_text } = req.params
@@ -310,7 +312,7 @@ module.exports = {
         })
 
         if(text == null) {
-            return res.status(404).send({message:"Invalid Text ID"})
+            return res.status(404).json({message:"Invalid Text ID"})
         }
 
         user.api_token -= 1;
@@ -336,7 +338,7 @@ module.exports = {
             })
         });
 
-        return res.status(200).send({
+        return res.status(200).json({
             message:"Text has been identified",
             list_entity:obj_viewed,
             original_text:text,

@@ -24,12 +24,12 @@ module.exports = {
     endpoint12: async (req, res) => {
         let api_key = req.header("Authorization")
         if (!api_key) {
-            return res.status(400).json({message: "API Key is required"});
+            return res.status(401).json({message: "API Key is required"});
         }
 
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) {
-            return res.status(400).json({message: "Invalid API Key"})
+            return res.status(401).json({message: "Invalid API Key"})
         }
 
         let count_chat_room = await db.Chat.count({where: {username: user.username}});
@@ -59,12 +59,12 @@ module.exports = {
     endpoint13: async (req, res) => {
         let api_key = req.header("Authorization")
         if (!api_key) {
-            return res.status(400).json({message: "API Key is required"});
+            return res.status(401).json({message: "API Key is required"});
         }
 
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) {
-            return res.status(404).json({message: "Invalid API Key"})
+            return res.status(401).json({message: "Invalid API Key"})
         }
 
         let {id_chat} = req.params;
@@ -95,12 +95,12 @@ module.exports = {
     endpoint14: async(req, res) => {
         let api_key = req.header("Authorization")
         if (!api_key) {
-            return res.status(400).json({message: "API Key is required"});
+            return res.status(401).json({message: "API Key is required"});
         }
 
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) {
-            return res.status(404).json({message: "Invalid API Key"})
+            return res.status(401).json({message: "Invalid API Key"})
         }
 
         let {id_chat} = req.params;
@@ -118,7 +118,7 @@ module.exports = {
 
         let url = baseUrl + "gpt2"
 
-        let inputs = `Bot name is Bob. Bot is ${chat.profile}. Please contineu this chat:\nUser:${text}\nBot:`
+        let inputs = `Bot name is Bob. Bot is ${chat.profile}. Please continue this chat:\nUser:${text}\nBot:`
 
         let data = {
             "inputs":inputs,
@@ -158,13 +158,13 @@ module.exports = {
     endpoint15: async(req,res) => {
         let api_key = req.header("Authorization")
         if (!api_key) {
-            return res.status(400).json({message: "API Key is required"});
+            return res.status(401).json({message: "API Key is required"});
         }
 
         let user = await db.User.findOne({where: {api_key: api_key}})
 
         if (user == null) {
-            return res.status(400).json({message: "Invalid API Key"})
+            return res.status(401).json({message: "Invalid API Key"})
         }
 
         let {id_chat} = req.params;

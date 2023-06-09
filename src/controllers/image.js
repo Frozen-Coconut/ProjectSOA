@@ -21,16 +21,16 @@ module.exports = {
         let api_key = req.header("Authorization")
         if (!api_key) {
             fs.rmSync(path.join(basePath, req.file.filename))
-            return res.status(400).json({message: "API Key is required"})
+            return res.status(401).json({message: "API Key is required"})
         }
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) {
             fs.rmSync(path.join(basePath, req.file.filename))
-            return res.status(400).json({message: "Invalid API Key"})
+            return res.status(401).json({message: "Invalid API Key"})
         }
         // if (user.api_token < 1) {
         //     fs.rmSync(path.join(basePath, req.file.filename))
-        //     return res.status(400).json({message: "Insufficient API Tokens"})
+        //     return res.status(403).json({message: "Insufficient API Tokens"})
         // }
         if (fileUtil.checkIfExists(path.join(basePath, user.username))) {
             let dir = fs.readdirSync(path.join(basePath, user.username))
@@ -56,10 +56,10 @@ module.exports = {
     endpoint17: async (req, res) => {
         let images_id = req.params.images_id
         let api_key = req.header("Authorization")
-        if (!api_key) return res.status(400).json({message: "API Key is required"})
+        if (!api_key) return res.status(401).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
-        if (user == null) return res.status(400).json({message: "Invalid API Key"})
-        // if (user.api_token < 1) return res.status(400).json({message: "Insufficient API Tokens"})
+        if (user == null) return res.status(401).json({message: "Invalid API Key"})
+        // if (user.api_token < 1) return res.status(403).json({message: "Insufficient API Tokens"})
         let imagePath = path.join(__srcpath, "uploads", user.username, images_id)
         if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
         fs.rmSync(imagePath)
@@ -74,10 +74,10 @@ module.exports = {
         let text = req.body.text
         if (!text) return res.status(400).json({message: "Text is required"})
         let api_key = req.header("Authorization")
-        if (!api_key) return res.status(400).json({message: "API Key is required"})
+        if (!api_key) return res.status(401).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
-        if (user == null) return res.status(400).json({message: "Invalid API Key"})
-        if (user.api_token < 1) return res.status(400).json({message: "Insufficient API Tokens"})
+        if (user == null) return res.status(401).json({message: "Invalid API Key"})
+        if (user.api_token < 1) return res.status(403).json({message: "Insufficient API Tokens"})
         let url = baseUrl + "runwayml/stable-diffusion-v1-5"
         let result
         try {
@@ -99,10 +99,10 @@ module.exports = {
         let image_id = req.body.image_id
         if (!image_id) return res.status(400).json({message: "Image ID is required"})
         let api_key = req.header("Authorization")
-        if (!api_key) return res.status(400).json({message: "API Key is required"})
+        if (!api_key) return res.status(401).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
-        if (user == null) return res.status(400).json({message: "Invalid API Key"})
-        if (user.api_token < 1) return res.status(400).json({message: "Insufficient API Tokens"})
+        if (user == null) return res.status(401).json({message: "Invalid API Key"})
+        if (user.api_token < 1) return res.status(403).json({message: "Insufficient API Tokens"})
         let url = baseUrl + "microsoft/resnet-50"
         let imagePath = path.join(__srcpath, "uploads", user.username, image_id)
         if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
@@ -125,10 +125,10 @@ module.exports = {
         let image_id = req.body.image_id
         if (!image_id) return res.status(400).json({message: "Image ID is required"})
         let api_key = req.header("Authorization")
-        if (!api_key) return res.status(400).json({message: "API Key is required"})
+        if (!api_key) return res.status(401).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
-        if (user == null) return res.status(400).json({message: "Invalid API Key"})
-        if (user.api_token < 1) return res.status(400).json({message: "Insufficient API Tokens"})
+        if (user == null) return res.status(401).json({message: "Invalid API Key"})
+        if (user.api_token < 1) return res.status(403).json({message: "Insufficient API Tokens"})
         let url = baseUrl + "openmmlab/upernet-convnext-small"
         let imagePath = path.join(__srcpath, "uploads", user.username, image_id)
         if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
