@@ -286,8 +286,12 @@ module.exports = {
 
         const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
         return res.status(200).json({
-	    message: "Text generated successfully",
-            result
+            message: "Text generated successfully",
+            result: {
+                input: text.text,
+                generated: result[0].generated_text.replace(text.text, ""),
+                output: result[0].generated_text
+            }
         })
     },
     endpoint11: async(req, res) => {
