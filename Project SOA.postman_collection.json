@@ -57,7 +57,72 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "user1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:24:30 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"2a-nMoFx54+czTntmSLXl3mqIsZV4A\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User registered successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 2",
@@ -110,7 +175,73 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "api_token",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users/upgrade",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"upgrade"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:25:30 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"3d-E1QTp9Kfuj7cThZ0ZaKUnAu+GM0\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Token recharged successfully\",\n    \"api_token\": 10\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 3",
@@ -163,7 +294,71 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 3",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "user1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:24:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"5a-evePxM5VnWVIYIaKG+Heheso8QU\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User logged in successfully\",\n    \"api_key\": \"132f67fc-4284-4489-b491-a7b1f6c56313\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 4",
@@ -215,7 +410,72 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 4",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Hello, World!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/texts",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:25:36 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "37"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"25-Uyclqf+dEag1EeedHkWBnR3rVJ4\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text added successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 5",
@@ -268,7 +528,73 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 5",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Hello, World!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/texts/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:25:43 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"27-O/ySyJf5CV62GGVPv6qgitmkbJo\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text updated successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 6",
@@ -311,7 +637,63 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 6",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/texts/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:25:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"27-fGKYHGqhpdNQ6PM/N5DuhXgcXRA\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text deleted successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 7",
@@ -355,7 +737,69 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 7",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/texts/search-text?text=bruh",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"search-text"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "bruh"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:29:08 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "131"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"83-64HgqRKEHAFFMt7hkQNJYAMuhII\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"texts\": [\n        {\n            \"id\": 3,\n            \"username\": \"user1\",\n            \"text\": \"Bruh\",\n            \"createdAt\": \"2023-06-16T05:27:51.000Z\",\n            \"updatedAt\": \"2023-06-16T05:27:51.000Z\"\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 8",
@@ -393,7 +837,63 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 8",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/texts/all-text",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"all-text"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:29:19 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "387"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"183-ZgNBG2CAtPhGB+gvsNRrZYQ7lto\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"texts\": [\n        {\n            \"id\": 2,\n            \"username\": \"user1\",\n            \"text\": \"Hello, World!\",\n            \"createdAt\": \"2023-06-16T05:26:06.000Z\",\n            \"updatedAt\": \"2023-06-16T05:26:06.000Z\"\n        },\n        {\n            \"id\": 3,\n            \"username\": \"user1\",\n            \"text\": \"Bruh\",\n            \"createdAt\": \"2023-06-16T05:27:51.000Z\",\n            \"updatedAt\": \"2023-06-16T05:27:51.000Z\"\n        },\n        {\n            \"id\": 4,\n            \"username\": \"user1\",\n            \"text\": \"Example one\",\n            \"createdAt\": \"2023-06-16T05:28:28.000Z\",\n            \"updatedAt\": \"2023-06-16T05:28:28.000Z\"\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 9",
@@ -437,7 +937,64 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 9",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/tasks/sentiment-analysis/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"sentiment-analysis",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:29:34 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "153"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"99-ROTtndURi+PEyws0OStucJrER/A\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text analyzed successfully\",\n    \"result\": [\n        [\n            {\n                \"label\": \"POSITIVE\",\n                \"score\": 0.9997164607048035\n            },\n            {\n                \"label\": \"NEGATIVE\",\n                \"score\": 0.00028346170438453555\n            }\n        ]\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 10",
@@ -481,7 +1038,64 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 10",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/tasks/text-generation/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"text-generation",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:29:49 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "252"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"fc-qNqZ7/WK3GUxicooCkEH9L99JeE\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text generated successfully\",\n    \"result\": {\n        \"input\": \"Bruh\",\n        \"generated\": \", who was also a member of the ruling party, said the government had not been\",\n        \"output\": \"Bruh, who was also a member of the ruling party, said the government had not been\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 11",
@@ -533,7 +1147,68 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 11",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "nimda",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/named-entity-recognition/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"named-entity-recognition",
+								"4"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:33:05 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "343"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"157-4WTtIdc/WqmHno8zFE+Cohuzzlg\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text has been identified\",\n    \"list_entity\": [],\n    \"original_text\": {\n        \"id\": 4,\n        \"username\": \"user1\",\n        \"text\": \"Example one\",\n        \"createdAt\": \"2023-06-16T05:28:28.000Z\",\n        \"updatedAt\": \"2023-06-16T05:28:28.000Z\"\n    },\n    \"anonymized_text\": {\n        \"id\": 4,\n        \"username\": \"user1\",\n        \"text\": \"Example one\",\n        \"createdAt\": \"2023-06-16T05:28:28.000Z\",\n        \"updatedAt\": \"2023-06-16T05:28:28.000Z\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 12",
@@ -543,6 +1218,7 @@
 					"script": {
 						"exec": [
 							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"chat_room_id\", jsonData.id);\r",
 							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -590,7 +1266,67 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 12",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "nimda",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/create-new-chat",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"create-new-chat"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:35:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "54"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"36-4fVk18D4wOa0pTZXE5Sj1ZzGl/c\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Chat room has been created\",\n    \"id\": \"AD1aGh\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 13",
@@ -656,12 +1392,85 @@
 					"variable": [
 						{
 							"key": "id_chat",
-							"value": "ADSDYe"
+							"value": "{{chat_room_id}}"
 						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 13",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "nimda",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "profile",
+									"value": "polite, outgoing, fun",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/create-new-profile-bot/:id_chat",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"create-new-profile-bot",
+								":id_chat"
+							],
+							"variable": [
+								{
+									"key": "id_chat",
+									"value": "{{chat_room_id}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:36:19 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "87"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"57-GzReGMq1kSu3S5sGS+MsrcUuUMI\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Bot Profile has been updated for AD1aGh\",\n    \"profile\": \"polite, outgoing, fun\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 14",
@@ -717,12 +1526,85 @@
 					"variable": [
 						{
 							"key": "id_chat",
-							"value": "ADSDYe"
+							"value": "{{chat_room_id}}"
 						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 14",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "nimda",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "My name is Billy, nice to meet you Bob",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/chatting/:id_chat",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"chatting",
+								":id_chat"
+							],
+							"variable": [
+								{
+									"key": "id_chat",
+									"value": "{{chat_room_id}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:37:05 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "13"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"d-+pB0SZfs0xoEkkQia9kIc2Mms+I\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Reply\": \"I\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 15",
@@ -777,12 +1659,75 @@
 					"variable": [
 						{
 							"key": "id_chat",
-							"value": "ADSDYe"
+							"value": "{{chat_room_id}}"
 						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 15",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "nimda",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/chats/historys/:id_chat",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"historys",
+								":id_chat"
+							],
+							"variable": [
+								{
+									"key": "id_chat",
+									"value": "{{chat_room_id}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:41:39 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "132"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"84-+Mbs8ANt2OgzuBPM4/jLZLMXH2M\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Chat log of chat AD1aGh\",\n    \"chat_log\": {\n        \"16-06-2023 05:37:04\": {\n            \"user\": \"My name is Billy, nice to meet you Bob\",\n            \"bot\": \"I\"\n        }\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 16",
@@ -821,7 +1766,7 @@
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/C:/Users/harto/Desktop/input.jpg"
+							"src": "/C:/Users/default/Desktop/image.jpeg"
 						}
 					]
 				},
@@ -836,7 +1781,72 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 16",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/default/Desktop/image.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/images",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"images"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:43:08 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "85"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"55-OtmmzpJ1IXK9IUFCbwi1Waev838\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Image uploaded successfully\",\n    \"id\": \"6fa5d04b-cfa0-486c-9a29-80729caf6796\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 17",
@@ -880,7 +1890,63 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 17",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/images/{{image_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"images",
+								"{{image_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:50:15 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"28-UlCcgBOXM5yPY4W9NDLAsyt+Nmk\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Image deleted successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 18",
@@ -935,7 +2001,73 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 18",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Himalayan mountain range",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/text-to-image",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"text-to-image"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:49:25 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "168"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"a8-uxI9q95NaGo4K/QM+z0SMS5QEQQ\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Image generated successfully\",\n    \"url\": \"https://project-soa-istts-2023-hugging-face.glitch.me/cdn/3818d77a-a094-4b39-a06a-8ee30ae03e69.jpg\",\n    \"api_token_left\": 6\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 19",
@@ -989,7 +2121,73 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 19",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "image_id",
+									"value": "{{image_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/image-classification",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"image-classification"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:49:40 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "334"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"14e-TbWAy9tAU4b2Eh6J0RtUdTG3vjM\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Image classified successfully\",\n    \"data\": [\n        {\n            \"score\": 0.870073676109314,\n            \"label\": \"valley, vale\"\n        },\n        {\n            \"score\": 0.11955441534519196,\n            \"label\": \"alp\"\n        },\n        {\n            \"score\": 0.0012398642720654607,\n            \"label\": \"mountain tent\"\n        },\n        {\n            \"score\": 0.0007626164588145912,\n            \"label\": \"lakeside, lakeshore\"\n        },\n        {\n            \"score\": 0.0005507050664164126,\n            \"label\": \"volcano\"\n        }\n    ],\n    \"api_token_left\": 5\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint 20",
@@ -1043,7 +2241,73 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Endpoint 20",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "image_id",
+									"value": "{{image_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/image-segmentation",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"image-segmentation"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 05:49:48 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1231"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"4cf-kUQ28N2CZQ6u2+OQHRwD6HjboaA\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Image segmented successfully\",\n    \"data\": [\n        {\n            \"score\": 1,\n            \"label\": \"sky\",\n            \"mask\": \"iVBORw0KGgoAAAANSUhEUgAAANEAAAB5CAAAAACCHpuwAAABQklEQVR4nO3X2w6CMBBF0Y7x/38ZHwCFtIXpDQ5mrycTUWZzx6bwZ153D9AdRfoo0keRPor0UaSPIn0U6fu/onfDby2EoPfCWL+PzEKYq7TUFtmaIpdUV2SbDrWkmiLbR4gllRdZVKCVVFoU9wSxpMIiqdnTyopyQUqhRUX5wYWSSoqOxtZJ8hclrwmbr1sn6cVddDqxSpKz6GQHzcu0TdKLr8g3rEaSp8izg+YFWybpJVNU+Sjqbh/IUq9sy1zT5rPfpe+AFq8vVdS6oa9q2s+5rjVR1H7kXJKUGHM+qKK1dzkVxjdlx4yuDH3O7eGXiLNHzOl8wQoDd9TBnKO3ZeI07RCq+MzclHU49L23xLKu5zyLHdzkf3cZ978pFC22YQ1jCRWFb5TWUAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwaB+2sRh+ZvdduwAAAABJRU5ErkJggg==\"\n        },\n        {\n            \"score\": 1,\n            \"label\": \"mountain\",\n            \"mask\": \"iVBORw0KGgoAAAANSUhEUgAAANEAAAB5CAAAAACCHpuwAAABdklEQVR4nO2Y25KCMBAFYf//n+MLtYWQYCYXaK3uFwuBzOkMBHFZRERERERE5DdZO85NnefPoT1R6h1gEq2BUvcIs2jLk/YbMKWWOOmwzVKKpzn6NA0ykWiYjE/DKDP5ix2eF0IRMyoJkURDRuXgIKWI0VVsjlL9Pf0pM2V1qO7RxyZQulQ5s1VxGV2q61Hd/DO6VDOv9UkJXSpkSLsdoal/3imbYP/qE76UbnVK53q5+r33w11O7znXw2fxwBZuUSq9A5yLD1mx5jsVY55Kj1qCJzuVY67prfzQR8pEqYuc6+THYuaqHiB6FXq2UbFuz8mXmZ8y2qqHjq6L+qzRliHzXTrsC/wSAxht7MU6UoGMln+prkwsoxEE/936AjTioxEfjfhoxEcjPhrx0YiPRnw04qMRH434aMRHIz4a8dGIj0Z8NOKjER+N+GjERyM+GvHRiI9GfDTioxEfjfhoxEcjPhrx0YiPRnw04qMRH434aMTn94xeOyo0pISZX9AAAAAASUVORK5CYII=\"\n        }\n    ],\n    \"api_token_left\": 4\n}"
+				}
+			]
 		},
 		{
 			"name": "Endpoint CDN",
@@ -1096,7 +2360,7 @@
 	"variable": [
 		{
 			"key": "host",
-			"value": "localhost:3000",
+			"value": "https://project-soa-istts-2023-hugging-face.glitch.me",
 			"type": "string"
 		},
 		{
@@ -1113,6 +2377,10 @@
 			"key": "cdn_url",
 			"value": "",
 			"type": "string"
+		},
+		{
+			"key": "chat_room_id",
+			"value": ""
 		}
 	]
 }
