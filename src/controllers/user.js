@@ -18,7 +18,7 @@ module.exports = {
                 "any.required":"Username is required",
                 "string.empty":"Username is required"
             }),
-            password: Joi.string().min(6).regex(/^\d+$/).required().messages({
+            password: Joi.string().required().messages({
                 "any.required":"Password is required",
                 "string.empty":"Password is required"
             }),
