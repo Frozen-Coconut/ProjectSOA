@@ -8,21 +8,30 @@ const db = require(__srcpath + "/models/index.js")
 const axios = require("axios")
 const baseUrl = "https://api-inference.huggingface.co/models/"
 const { Op } = require("sequelize");
+const Joi = require('joi');
 
 module.exports = {
     endpoint4: async (req, res) => {
         let {text} = req.body;
         let api_key = req.header("Authorization");
 
-        if(!text){
-            return res.status(400).json({
-                message: "Text is required"
-            })  
-        }
         if(!api_key){
             return res.status(401).json({
                 message: "API Key is required"
             }) 
+        }
+
+        const schema = Joi.object({
+            text:Joi.string().required().messages({
+                "any.required":"Text is required",
+                "string.empty":"Text is required"
+            })
+        });
+
+        try {
+            await schema.validateAsync(req.body);
+        } catch (error) {
+            return res.status(401).send({message:error.details[0].message})
         }
 
         let checkUser;
@@ -36,11 +45,14 @@ module.exports = {
                 message: "Invalid API Key"
             })  
         }
+
+        let temp = ""
+
         try {
-                    let temp = await db.Text.create({
-                        text: text,
-                        username: checkUser.username
-                    });
+            temp = await db.Text.create({
+                text: text,
+                username: checkUser.username
+            });
         } catch (error) {
             return res.status(400).json({
               message: error
@@ -48,7 +60,8 @@ module.exports = {
         }
         
         return res.status(200).json({
-            message: "Text added successfully"
+            message: "Text added successfully",
+            id : temp.id
         })  
     },
     endpoint5: async (req, res) => {
@@ -240,10 +253,20 @@ module.exports = {
         let url = baseUrl + "distilbert-base-uncased-finetuned-sst-2-english"
 
         const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
+        
+        let result_sentiment = result[0][0].score > result[0][1].score ? result[0][0].label : result[0][1].label;
+
+        const history = await db.Historytext.create({
+            text:text,
+            result:result_sentiment,
+            type:"SA",
+            datetime:new Date()
+        });
+        
         return res.status(200).json({
-	    message: "Text analyzed successfully",
+	        message: `Text analyzed successfully, the text has been classified as ${result_sentiment}`,
             result
-        })
+        });
     },
     endpoint10: async (req, res) => {
         let { id_text } = req.params
@@ -277,6 +300,13 @@ module.exports = {
         await user.save();
 
         let url = baseUrl + "gpt2"
+
+        const history = await db.Historytext.create({
+            text:text,
+            result:result[0].generated_text.replace(text.text, ""),
+            type:"TG",
+            datetime:new Date()
+        });
 
         const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
         return res.status(200).json({
@@ -323,7 +353,7 @@ module.exports = {
 
         const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
         
-        let text_anonymized = text;
+        let text_anonymized = text.text;
 
         let obj_viewed = []
 
@@ -336,11 +366,69 @@ module.exports = {
             })
         });
 
+        const history = await db.Historytext.create({
+            text:text,
+            result:text_anonymized,
+            type:"NER",
+            datetime:new Date()
+        });
+
         return res.status(200).json({
             message:"Text has been identified",
-            list_entity:obj_viewed,
-            original_text:text,
-            anonymized_text:text_anonymized
+            result:{
+                list_entity:obj_viewed,
+                original_text:text.text,
+                anonymized_text:text_anonymized
+            }
         });
+    },
+    endpoint21: async(req,res) => {
+        const schema = Joi.object({
+            type:Joi.any().when('type', {is:Joi.exist(), then:Joi.valid('SA', 'TG', 'NER')})
+        });
+
+        try {
+            await schema.validateAsync(req.body);
+        } catch (error) {
+            return res.status(401).send({message:"Type should be inserted or not at all"})
+        }
+
+        let type = req.query.type;
+
+        let obj_viewed = []
+
+        if (!type || type == "") {
+            let all_text_history = await db.Historytext.findAll();
+
+            history.forEach(all_text_history => {
+                let type_text_analysis = history.type == "SA" ? "Sentiment Analysis" : (history.type == "TG" ? "Text Generation" : "Named Entity Recognition / Anonymization") 
+                obj_viewed.push({
+                    type : type_text_analysis,
+                    original_text : history.text,
+                    result : history.result,
+                    datetime : history.datetime
+                });
+            });
+        } else {
+            let all_text_history = await db.Historytext.findAll({
+                where: {
+                    type:type
+                }
+            });
+
+            history.forEach(all_text_history => {
+                let type_text_analysis = history.type == "SA" ? "Sentiment Analysis" : (history.type == "TG" ? "Text Generation" : "Named Entity Recognition / Anonymization") 
+                obj_viewed.push({
+                    type : type_text_analysis,
+                    original_text : history.text,
+                    result : history.result,
+                    datetime : history.datetime
+                });
+            });
+        }
+
+        return res.status(200).send({
+            obj_viewed
+        })
     }
 }
