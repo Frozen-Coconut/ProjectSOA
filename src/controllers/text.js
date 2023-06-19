@@ -174,6 +174,12 @@ module.exports = {
                 api_key: api_key
             }
         })
+	
+	if(!user){
+            return res.status(401).json({
+                message: "Invalid API Key"
+            })
+        }
 
         let texts = await db.Text.findAll({
             where: {
@@ -244,9 +250,9 @@ module.exports = {
             return res.status(404).json({message:"Invalid Text ID"})
         }
 
-        user.api_token -= 1;
+        if(user.api_token < 1) return res.status(403).json({message:"Please recharge your API Token"})
 
-        if(user.api_token < 0) return res.status(403).json({message:"Please recharge your API Token"})
+        user.api_token -= 1;
 
         await user.save();
 
@@ -293,9 +299,9 @@ module.exports = {
             return res.status(404).json({message:"Invalid Text ID"})
         }
 
-        user.api_token -= 1;
+        if(user.api_token < 1) return res.status(403).json({message:"Please recharge your API Token"})
 
-        if(user.api_token < 0) return res.status(403).json({message:"Please recharge your API Token"})
+        user.api_token -= 1;
 
         await user.save();
 
@@ -343,9 +349,9 @@ module.exports = {
             return res.status(404).json({message:"Invalid Text ID"})
         }
 
-        user.api_token -= 1;
-
-        if(user.api_token < 0) return res.status(403).json({message:"Please recharge your API Token"})
+        if(user.api_token < 1) return res.status(403).json({message:"Please recharge your API Token"})
+        
+	user.api_token -= 1;
 
         await user.save();
 

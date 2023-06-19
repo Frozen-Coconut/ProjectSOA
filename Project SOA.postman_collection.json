@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "93e51585-7329-4fac-a7c5-3d27eca73765",
+		"_postman_id": "b368c069-a233-4e15-8e84-53f7af3720e8",
 		"name": "Project SOA",
 		"description": "Project SOA",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -121,6 +121,136 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"message\": \"User registered successfully\"\n}"
+				},
+				{
+					"name": "Endpoint 1 - Failed (Invalid Body)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "user1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:42:57 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"30-xTugo7XT0jrPxaM4rA4Y15DIhms\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Username and password are required\"\n}"
+				},
+				{
+					"name": "Endpoint 1 - Failed (Invalid Username)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "user1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:40:14 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"27-ec1GNXR970tN99GKnf5BsqY6QzM\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Username is not available\"\n}"
 				}
 			]
 		},
@@ -240,6 +370,333 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"message\": \"API Token recharged successfully\",\n    \"api_token\": 10\n}"
+				},
+				{
+					"name": "Endpoint 2 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "api_token",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users/upgrade",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"upgrade"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:48:02 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 2 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "api_token",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users/upgrade",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"upgrade"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:48:22 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 2 - Failed (Invalid Body)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "api_token",
+									"value": "10",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users/upgrade",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"upgrade"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:49:41 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "35"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"23-ZhSOTGMzje2MNJKDRNzJhK11Z14\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Token is required\"\n}"
+				},
+				{
+					"name": "Endpoint 2 - Failed (Invalid API Token)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "api_token",
+									"value": "abcde",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users/upgrade",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"upgrade"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:50:35 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"28-T3B70HDEl9pM8EE0SJwS8gg1FfU\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Token must be a number\"\n}"
+				},
+				{
+					"name": "Endpoint 2 - Failed (Invalid API Token)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "api_token",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users/upgrade",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"upgrade"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:50:51 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"2e-0rALZnG9pRHpKGSqOquDdijcd1Y\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Token must be greater than 0\"\n}"
 				}
 			]
 		},
@@ -332,7 +789,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:24:52 GMT"
+							"value": "Mon, 19 Jun 2023 15:51:35 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -340,7 +797,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "90"
+							"value": "104"
 						},
 						{
 							"key": "Connection",
@@ -352,11 +809,202 @@
 						},
 						{
 							"key": "etag",
-							"value": "W/\"5a-evePxM5VnWVIYIaKG+Heheso8QU\""
+							"value": "W/\"68-wIPrEGAtarPVVywHBPuLq22aDIw\""
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"User logged in successfully\",\n    \"api_key\": \"132f67fc-4284-4489-b491-a7b1f6c56313\"\n}"
+					"body": "{\n    \"message\": \"User logged in successfully\",\n    \"api_key\": \"093f7707-9e5d-4465-a7ad-00b308778cb9\",\n    \"api_token\": 0\n}"
+				},
+				{
+					"name": "Endpoint 3 - Failed (Invalid Body)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "user1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:45:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"30-xTugo7XT0jrPxaM4rA4Y15DIhms\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Username and password are required\"\n}"
+				},
+				{
+					"name": "Endpoint 3 - Failed (Invalid Username)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user0",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "user0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:44:40 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"1f-ZyHCio4w2R51ZmbkfZV4cATeB5I\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User is not found\"\n}"
+				},
+				{
+					"name": "Endpoint 3 - Failed (Invalid Password)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "user0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:46:44 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"20-La30IV3IxG4lUSPZkoBsB25RUbw\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Incorrect password\"\n}"
 				}
 			]
 		},
@@ -474,6 +1122,200 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"message\": \"Text added successfully\"\n}"
+				},
+				{
+					"name": "Endpoint 4 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Hello, World!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/texts",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:57:41 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 4 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Hello, World!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/texts",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:57:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 4 - Failed (Invalid Body)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Hello, World!",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/texts",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:58:04 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"1e-wKSJOgLzhWysxKblsYF3P9JbuyI\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text is required\"\n}"
 				}
 			]
 		},
@@ -593,6 +1435,272 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"message\": \"Text updated successfully\"\n}"
+				},
+				{
+					"name": "Endpoint 5 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Hello, World!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/texts/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:59:49 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 5 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Hello, World!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/texts/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 15:59:49 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 5 - Failed (Invalid Text ID)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Hello, World!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/texts/12345",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"12345"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1f-lblXpriX+0DqH7By/zBXdh1AUw8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:19:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text is not found\"\n}"
+				},
+				{
+					"name": "Endpoint 5 - Failed (Invalid Body)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Hello, World!",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/texts/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"1"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:00:11 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"1e-wKSJOgLzhWysxKblsYF3P9JbuyI\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text is required\"\n}"
 				}
 			]
 		},
@@ -692,6 +1800,117 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"message\": \"Text deleted successfully\"\n}"
+				},
+				{
+					"name": "Endpoint 6 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/texts/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:01:38 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 6 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/texts/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:01:47 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
 				}
 			]
 		},
@@ -720,7 +1939,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}/api/texts/search-text?text=bruh",
+					"raw": "{{host}}/api/texts/search-text?text=hello",
 					"host": [
 						"{{host}}"
 					],
@@ -732,7 +1951,7 @@
 					"query": [
 						{
 							"key": "text",
-							"value": "bruh"
+							"value": "hello"
 						}
 					]
 				}
@@ -746,6 +1965,137 @@
 							{
 								"key": "Authorization",
 								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/texts/search-text?text=hello",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"search-text"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "hello"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "140"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"8c-ubL9r9pN7Le7YfMQtvrG9C4/DxQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:13:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"texts\": [\n        {\n            \"id\": 1,\n            \"username\": \"user1\",\n            \"text\": \"Hello, World!\",\n            \"createdAt\": \"2023-06-19T16:12:56.000Z\",\n            \"updatedAt\": \"2023-06-19T16:12:56.000Z\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "Endpoint 7 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/texts/search-text?text=bruh",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"search-text"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "bruh"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:11:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 7 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
 								"type": "text"
 							}
 						],
@@ -767,13 +2117,13 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Unauthorized",
+					"code": 401,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:29:08 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -781,23 +2131,27 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "131"
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:11:24 GMT"
 						},
 						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"83-64HgqRKEHAFFMt7hkQNJYAMuhII\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"texts\": [\n        {\n            \"id\": 3,\n            \"username\": \"user1\",\n            \"text\": \"Bruh\",\n            \"createdAt\": \"2023-06-16T05:27:51.000Z\",\n            \"updatedAt\": \"2023-06-16T05:27:51.000Z\"\n        }\n    ]\n}"
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
 				}
 			]
 		},
@@ -866,8 +2220,8 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:29:19 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -875,23 +2229,146 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "387"
+							"value": "274"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"112-vU+wP/TIUqZida6KNhE/uTqTDeA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:15:47 GMT"
 						},
 						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"183-ZgNBG2CAtPhGB+gvsNRrZYQ7lto\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"texts\": [\n        {\n            \"id\": 2,\n            \"username\": \"user1\",\n            \"text\": \"Hello, World!\",\n            \"createdAt\": \"2023-06-16T05:26:06.000Z\",\n            \"updatedAt\": \"2023-06-16T05:26:06.000Z\"\n        },\n        {\n            \"id\": 3,\n            \"username\": \"user1\",\n            \"text\": \"Bruh\",\n            \"createdAt\": \"2023-06-16T05:27:51.000Z\",\n            \"updatedAt\": \"2023-06-16T05:27:51.000Z\"\n        },\n        {\n            \"id\": 4,\n            \"username\": \"user1\",\n            \"text\": \"Example one\",\n            \"createdAt\": \"2023-06-16T05:28:28.000Z\",\n            \"updatedAt\": \"2023-06-16T05:28:28.000Z\"\n        }\n    ]\n}"
+					"body": "{\n    \"texts\": [\n        {\n            \"id\": 1,\n            \"username\": \"user1\",\n            \"text\": \"Hello, World!\",\n            \"createdAt\": \"2023-06-19T16:12:56.000Z\",\n            \"updatedAt\": \"2023-06-19T16:12:56.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"username\": \"user1\",\n            \"text\": \"This is an example\",\n            \"createdAt\": \"2023-06-19T16:15:28.000Z\",\n            \"updatedAt\": \"2023-06-19T16:15:28.000Z\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "Endpoint 8 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/texts/all-text",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"all-text"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:16:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 8 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/texts/all-text",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"texts",
+								"all-text"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:16:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
 				}
 			]
 		},
@@ -939,13 +2416,74 @@
 			},
 			"response": [
 				{
-					"name": "Endpoint 9",
+					"name": "Endpoint 9 - Failed (Invalid Header)",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
 								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/tasks/sentiment-analysis/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"sentiment-analysis",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:17:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 9 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
 								"type": "text"
 							}
 						],
@@ -962,13 +2500,13 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Unauthorized",
+					"code": 401,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:29:34 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -976,23 +2514,87 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "153"
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:17:21 GMT"
 						},
 						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"99-ROTtndURi+PEyws0OStucJrER/A\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Text analyzed successfully\",\n    \"result\": [\n        [\n            {\n                \"label\": \"POSITIVE\",\n                \"score\": 0.9997164607048035\n            },\n            {\n                \"label\": \"NEGATIVE\",\n                \"score\": 0.00028346170438453555\n            }\n        ]\n    ]\n}"
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 9 - Failed (Invalid Text ID)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/tasks/sentiment-analysis/12345",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"sentiment-analysis",
+								"12345"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-RFqiz110BS/Znr9TLdHygb+Mkh0\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:20:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid Text ID\"\n}"
 				}
 			]
 		},
@@ -1040,7 +2642,128 @@
 			},
 			"response": [
 				{
-					"name": "Endpoint 10",
+					"name": "Endpoint 10 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/tasks/text-generation/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"text-generation",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:27:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 10 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/tasks/text-generation/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"text-generation",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:27:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 10 - Failed (Invalid Text ID)",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -1051,7 +2774,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/api/tasks/text-generation/3",
+							"raw": "{{host}}/api/tasks/text-generation/12345",
 							"host": [
 								"{{host}}"
 							],
@@ -1059,17 +2782,17 @@
 								"api",
 								"tasks",
 								"text-generation",
-								"3"
+								"12345"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Not Found",
+					"code": 404,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:29:49 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -1077,23 +2800,27 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "252"
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-RFqiz110BS/Znr9TLdHygb+Mkh0\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:27:42 GMT"
 						},
 						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"fc-qNqZ7/WK3GUxicooCkEH9L99JeE\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Text generated successfully\",\n    \"result\": {\n        \"input\": \"Bruh\",\n        \"generated\": \", who was also a member of the ruling party, said the government had not been\",\n        \"output\": \"Bruh, who was also a member of the ruling party, said the government had not been\"\n    }\n}"
+					"body": "{\n    \"message\": \"Invalid Text ID\"\n}"
 				}
 			]
 		},
@@ -1126,7 +2853,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "nimda",
+						"value": "{{api_key}}",
 						"type": "text"
 					}
 				],
@@ -1149,13 +2876,78 @@
 			},
 			"response": [
 				{
-					"name": "Endpoint 11",
+					"name": "Endpoint 11 - Failed (Invalid Header)",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "nimda",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/named-entity-recognition/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"named-entity-recognition",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:29:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 11 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
 								"type": "text"
 							}
 						],
@@ -1164,7 +2956,7 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "{{host}}/api/tasks/named-entity-recognition/4",
+							"raw": "{{host}}/api/tasks/named-entity-recognition/1",
 							"host": [
 								"{{host}}"
 							],
@@ -1172,17 +2964,17 @@
 								"api",
 								"tasks",
 								"named-entity-recognition",
-								"4"
+								"1"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Unauthorized",
+					"code": 401,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:33:05 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -1190,23 +2982,91 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "343"
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:29:20 GMT"
 						},
 						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"157-4WTtIdc/WqmHno8zFE+Cohuzzlg\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Text has been identified\",\n    \"list_entity\": [],\n    \"original_text\": {\n        \"id\": 4,\n        \"username\": \"user1\",\n        \"text\": \"Example one\",\n        \"createdAt\": \"2023-06-16T05:28:28.000Z\",\n        \"updatedAt\": \"2023-06-16T05:28:28.000Z\"\n    },\n    \"anonymized_text\": {\n        \"id\": 4,\n        \"username\": \"user1\",\n        \"text\": \"Example one\",\n        \"createdAt\": \"2023-06-16T05:28:28.000Z\",\n        \"updatedAt\": \"2023-06-16T05:28:28.000Z\"\n    }\n}"
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 11 - Failed (Invalid Text ID)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/named-entity-recognition/12345",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"named-entity-recognition",
+								"12345"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-RFqiz110BS/Znr9TLdHygb+Mkh0\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:29:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid Text ID\"\n}"
 				}
 			]
 		},
@@ -1246,7 +3106,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "nimda",
+						"value": "{{api_key}}",
 						"type": "text"
 					}
 				],
@@ -1274,7 +3134,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "nimda",
+								"value": "{{api_key}}",
 								"type": "text"
 							}
 						],
@@ -1299,8 +3159,8 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:35:42 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -1311,20 +3171,151 @@
 							"value": "54"
 						},
 						{
+							"key": "ETag",
+							"value": "W/\"36-bWItdapvbhogUf3hcyiF8ZgJVQ4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:39:56 GMT"
+						},
+						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"36-4fVk18D4wOa0pTZXE5Sj1ZzGl/c\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Chat room has been created\",\n    \"id\": \"AD1aGh\"\n}"
+					"body": "{\n    \"message\": \"Chat room has been created\",\n    \"id\": \"USim5C\"\n}"
+				},
+				{
+					"name": "Endpoint 12 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/create-new-chat",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"create-new-chat"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:40:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 12 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/create-new-chat",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"create-new-chat"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:40:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
 				}
 			]
 		},
@@ -1352,8 +3343,7 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"pm.variables.set(\"profile\", \"polite, outgoing, fun\");;\r",
-							"pm.variables.set(\"id_chat\", \"ADSDYe\");;"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -1364,7 +3354,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "nimda",
+						"value": "{{api_key}}",
 						"type": "text"
 					}
 				],
@@ -1379,7 +3369,7 @@
 					]
 				},
 				"url": {
-					"raw": "{{host}}/api/chats/create-new-profile-bot/:id_chat",
+					"raw": "{{host}}/api/chats/create-new-profile-bot/{{chat_room_id}}",
 					"host": [
 						"{{host}}"
 					],
@@ -1387,13 +3377,7 @@
 						"api",
 						"chats",
 						"create-new-profile-bot",
-						":id_chat"
-					],
-					"variable": [
-						{
-							"key": "id_chat",
-							"value": "{{chat_room_id}}"
-						}
+						"{{chat_room_id}}"
 					]
 				}
 			},
@@ -1405,7 +3389,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "nimda",
+								"value": "{{api_key}}",
 								"type": "text"
 							}
 						],
@@ -1420,7 +3404,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/api/chats/create-new-profile-bot/:id_chat",
+							"raw": "{{host}}/api/chats/create-new-profile-bot/{{chat_room_id}}",
 							"host": [
 								"{{host}}"
 							],
@@ -1428,13 +3412,7 @@
 								"api",
 								"chats",
 								"create-new-profile-bot",
-								":id_chat"
-							],
-							"variable": [
-								{
-									"key": "id_chat",
-									"value": "{{chat_room_id}}"
-								}
+								"{{chat_room_id}}"
 							]
 						}
 					},
@@ -1443,8 +3421,8 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:36:19 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -1455,20 +3433,306 @@
 							"value": "87"
 						},
 						{
+							"key": "ETag",
+							"value": "W/\"57-+6Qe8ND7Qr+J13SMVjxAEw55/y8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:51:17 GMT"
+						},
+						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"57-GzReGMq1kSu3S5sGS+MsrcUuUMI\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Bot Profile has been updated for AD1aGh\",\n    \"profile\": \"polite, outgoing, fun\"\n}"
+					"body": "{\n    \"message\": \"Bot Profile has been updated for USk0U0\",\n    \"profile\": \"polite, outgoing, fun\"\n}"
+				},
+				{
+					"name": "Endpoint 13 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "profile",
+									"value": "polite, outgoing, fun",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/create-new-profile-bot/{{chat_room_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"create-new-profile-bot",
+								"{{chat_room_id}}"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:51:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 13 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "profile",
+									"value": "polite, outgoing, fun",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/create-new-profile-bot/{{chat_room_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"create-new-profile-bot",
+								"{{chat_room_id}}"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:51:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 13  - Failed (Invalid Chat ID)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "profile",
+									"value": "polite, outgoing, fun",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/create-new-profile-bot/abcde",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"create-new-profile-bot",
+								"abcde"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-ojZla916Po4rhY62IWUfZZlHVaU\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:52:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid Chat ID\"\n}"
+				},
+				{
+					"name": "Endpoint 13 - Failed (Invalid Body)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "profile",
+									"value": "polite, outgoing, fun",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/create-new-profile-bot/{{chat_room_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"create-new-profile-bot",
+								"{{chat_room_id}}"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "38"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"26-3nvAO7bZObTGyFsgyD71XmiD8J4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:53:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text Profile is required\"\n}"
 				}
 			]
 		},
@@ -1498,7 +3762,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "nimda",
+						"value": "{{api_key}}",
 						"type": "text"
 					}
 				],
@@ -1513,7 +3777,7 @@
 					]
 				},
 				"url": {
-					"raw": "{{host}}/api/chats/chatting/:id_chat",
+					"raw": "{{host}}/api/chats/chatting/{{chat_room_id}}",
 					"host": [
 						"{{host}}"
 					],
@@ -1521,13 +3785,7 @@
 						"api",
 						"chats",
 						"chatting",
-						":id_chat"
-					],
-					"variable": [
-						{
-							"key": "id_chat",
-							"value": "{{chat_room_id}}"
-						}
+						"{{chat_room_id}}"
 					]
 				}
 			},
@@ -1539,7 +3797,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "nimda",
+								"value": "{{api_key}}",
 								"type": "text"
 							}
 						],
@@ -1554,7 +3812,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/api/chats/chatting/:id_chat",
+							"raw": "{{host}}/api/chats/chatting/{{chat_room_id}}",
 							"host": [
 								"{{host}}"
 							],
@@ -1562,13 +3820,7 @@
 								"api",
 								"chats",
 								"chatting",
-								":id_chat"
-							],
-							"variable": [
-								{
-									"key": "id_chat",
-									"value": "{{chat_room_id}}"
-								}
+								"{{chat_room_id}}"
 							]
 						}
 					},
@@ -1577,8 +3829,8 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:37:05 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -1589,20 +3841,235 @@
 							"value": "13"
 						},
 						{
+							"key": "ETag",
+							"value": "W/\"d-+pB0SZfs0xoEkkQia9kIc2Mms+I\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:55:08 GMT"
+						},
+						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"d-+pB0SZfs0xoEkkQia9kIc2Mms+I\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
 					"body": "{\n    \"Reply\": \"I\"\n}"
+				},
+				{
+					"name": "Endpoint 14 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "My name is Billy, nice to meet you Bob",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/chatting/{{chat_room_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"chatting",
+								"{{chat_room_id}}"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:55:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 14 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "My name is Billy, nice to meet you Bob",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/chatting/{{chat_room_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"chatting",
+								"{{chat_room_id}}"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 16:55:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 14 - Failed (Invalid Chat ID)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "My name is Billy, nice to meet you Bob",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/chats/chatting/abcde",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"chatting",
+								"abcde"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-ojZla916Po4rhY62IWUfZZlHVaU\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 17:11:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid Chat ID\"\n}"
 				}
 			]
 		},
@@ -1613,7 +4080,7 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"pm.variables.set(\"id_chat\", \"ADSDYe\");;"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -1641,12 +4108,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "nimda",
+						"value": "{{api_key}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{host}}/api/chats/historys/:id_chat",
+					"raw": "{{host}}/api/chats/historys/{{chat_room_id}}",
 					"host": [
 						"{{host}}"
 					],
@@ -1654,13 +4121,7 @@
 						"api",
 						"chats",
 						"historys",
-						":id_chat"
-					],
-					"variable": [
-						{
-							"key": "id_chat",
-							"value": "{{chat_room_id}}"
-						}
+						"{{chat_room_id}}"
 					]
 				}
 			},
@@ -1672,12 +4133,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "nimda",
+								"value": "{{api_key}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{host}}/api/chats/historys/:id_chat",
+							"raw": "{{host}}/api/chats/historys/{{chat_room_id}}",
 							"host": [
 								"{{host}}"
 							],
@@ -1685,13 +4146,7 @@
 								"api",
 								"chats",
 								"historys",
-								":id_chat"
-							],
-							"variable": [
-								{
-									"key": "id_chat",
-									"value": "{{chat_room_id}}"
-								}
+								"{{chat_room_id}}"
 							]
 						}
 					},
@@ -1700,8 +4155,8 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:41:39 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -1712,20 +4167,205 @@
 							"value": "132"
 						},
 						{
+							"key": "ETag",
+							"value": "W/\"84-XnZimjdtULLMsy1ZkSV9t4tLX3o\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 17:13:38 GMT"
+						},
+						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"84-+Mbs8ANt2OgzuBPM4/jLZLMXH2M\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Chat log of chat AD1aGh\",\n    \"chat_log\": {\n        \"16-06-2023 05:37:04\": {\n            \"user\": \"My name is Billy, nice to meet you Bob\",\n            \"bot\": \"I\"\n        }\n    }\n}"
+					"body": "{\n    \"message\": \"Chat log of chat US6KBF\",\n    \"chat_log\": {\n        \"19-06-2023 17:13:34\": {\n            \"user\": \"My name is Billy, nice to meet you Bob\",\n            \"bot\": \"I\"\n        }\n    }\n}"
+				},
+				{
+					"name": "Endpoint 15 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/chats/historys/{{chat_room_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"historys",
+								"{{chat_room_id}}"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 17:14:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 15 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/chats/historys/{{chat_room_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"historys",
+								"{{chat_room_id}}"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 17:14:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 15 - Failed (Invalid Chat ID)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/chats/historys/abcde",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"chats",
+								"historys",
+								"abcde"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-ojZla916Po4rhY62IWUfZZlHVaU\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 19 Jun 2023 17:14:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid Chat ID\"\n}"
 				}
 			]
 		},
