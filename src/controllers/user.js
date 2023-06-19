@@ -6,16 +6,29 @@ const db = require(__srcpath + "/models/index.js")
 
 // imports
 const crypto = require('crypto');
+const Joi = require('joi')
 
 module.exports = {
     endpoint1: async (req, res) => {
         let {username, password} = req.body;
 
-        if(!username||!password){
-            return res.status(400).json({
-                message: "Username and password are required"
-            })  
-        }
+
+        const schema = Joi.object({
+            username: Joi.string().required().messages({
+                "any.required":"Username is required",
+                "string.empty":"Username is required"
+            }),
+            password: Joi.string().min(6).regex(/^\d+$/).required().messages({
+                "any.required":"Password is required",
+                "string.empty":"Password is required"
+            }),
+          })
+
+          try {
+            await schema.validateAsync(req.body)
+          } catch (error) {
+            return res.status(403).send(error.toString())
+          }
 
         let checkUser;
         checkUser = await db.User.findOne({
@@ -56,21 +69,21 @@ module.exports = {
                 message: "API Key is required"
             }) 
         }
-        if(!api_token){
-            return res.status(400).json({
-                message: "API Token is required"
-            }) 
-        }
-        if(isNaN(api_token)){
-            return res.status(400).json({
-                message: "API Token must be a number"
-            }) 
-        }
-        if(api_token<=0){
-            return res.status(400).json({
-                message: "API Token must be greater than 0"
-            }) 
-        }
+
+        const schema = Joi.object({
+            // api_key: Joi.string().required,
+            api_token: Joi.number().min(1).required().messages({
+                "any.required":"api_token is required",
+                "number.empty":"api_token is required"
+            }),
+          })
+
+          try {
+            await schema.validateAsync(req.body)
+          } catch (error) {
+            return res.status(403).send(error.toString())
+          }
+
         let checkUser;
         checkUser = await db.User.findOne({
             where:{
@@ -102,11 +115,22 @@ module.exports = {
     endpoint3: async (req, res) => {
         let {username, password} = req.body;
 
-        if(!username||!password){
-            return res.status(400).json({
-                message: "Username and password are required"
-            })  
-        }
+        const schema = Joi.object({
+            username: Joi.string().required().messages({
+                "any.required":"Username is required",
+                "string.empty":"Username is required"
+            }),
+            password: Joi.string().required().messages({
+                "any.required":"Password is required",
+                "string.empty":"Password is required"
+            }),
+          })
+
+          try {
+            await schema.validateAsync(req.body)
+          } catch (error) {
+            return res.status(403).send(error.toString())
+          }
 
         let checkUser;
         try {

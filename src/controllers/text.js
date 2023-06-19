@@ -69,10 +69,21 @@ module.exports = {
         let {id} = req.params;
         let api_key = req.header("Authorization");
 
-        if(!text||!id){
-            return res.status(400).json({
-                message: "Text is required"
-            })  
+        const schema = Joi.object({
+            text:Joi.string().required().messages({
+                "any.required":"Text is required",
+                "string.empty":"Text is required"
+            }),
+            id:Joi.string().required().messages({
+                "any.required":"ID is required",
+                "string.empty":"ID is required"
+            })
+        });
+
+        try {
+            await schema.validateAsync(req.body);
+        } catch (error) {
+            return res.status(401).send({message:error.details[0].message})
         }
         if(!api_key){
             return res.status(401).json({
