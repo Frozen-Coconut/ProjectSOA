@@ -7,8 +7,6 @@ const { endpoint4, endpoint5, endpoint6, endpoint7, endpoint8, endpoint9, endpoi
 const { endpoint12, endpoint13, endpoint14, endpoint15 } = require(__srcpath +  "/controllers/chatbot");
 const { endpoint16, endpoint17, endpoint18, endpoint19, endpoint20 } = require(__srcpath +  "/controllers/image")
 
-
-
 // imports
 const express = require("express")
 const router = express.Router()

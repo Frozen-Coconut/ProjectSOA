@@ -28,10 +28,6 @@ module.exports = {
             fs.rmSync(path.join(basePath, req.file.filename))
             return res.status(401).json({message: "Invalid API Key"})
         }
-        // if (user.api_token < 1) {
-        //     fs.rmSync(path.join(basePath, req.file.filename))
-        //     return res.status(403).json({message: "Insufficient API Tokens"})
-        // }
         if (fileUtil.checkIfExists(path.join(basePath, user.username))) {
             let dir = fs.readdirSync(path.join(basePath, user.username))
             if (dir.length >= 10) {
@@ -45,12 +41,9 @@ module.exports = {
         fileUtil.mkdirIfNotExists(path.join(basePath, user.username))
         let id = uuid()
         fs.renameSync(path.join(basePath, req.file.filename), path.join(basePath, user.username, id))
-        // user.api_token -= 1
-        // await user.save()
         return res.status(200).json({
             message: "Image uploaded successfully",
             id: id
-            // api_token_left: user.api_token
         })  
     },
     endpoint17: async (req, res) => {
@@ -59,15 +52,11 @@ module.exports = {
         if (!api_key) return res.status(401).json({message: "API Key is required"})
         let user = await db.User.findOne({where: {api_key: api_key}})
         if (user == null) return res.status(401).json({message: "Invalid API Key"})
-        // if (user.api_token < 1) return res.status(403).json({message: "Insufficient API Tokens"})
         let imagePath = path.join(__srcpath, "uploads", user.username, images_id)
         if (!fileUtil.checkIfExists(imagePath)) return res.status(400).json({message: "Image not found"})
         fs.rmSync(imagePath)
-        // user.api_token -= 1
-        // await user.save()
         return res.status(200).json({
             message: "Image deleted successfully"
-            // api_token_left: user.api_token
         })
     },
     endpoint18: async (req, res) => {

@@ -3,18 +3,8 @@ const __srcpath = __dirname.replace("\\controllers", "")
 
 // db
 const db = require(__srcpath + "/models/index.js")
-const User = require(__srcpath + "/models/user");
-
-// utilities
-const fileUtil = require(__srcpath + "/utilities/file.js")
 
 // imports
-const axios = require("axios")
-const baseUrl = "https://api-inference.huggingface.co/models/"
-const path = require("path")
-const fs = require("fs")
-const uuid = require("uuid").v4
-const { Op } = require("sequelize");
 const crypto = require('crypto');
 
 module.exports = {
@@ -145,7 +135,8 @@ module.exports = {
         
         return res.status(200).json({
             message: "User logged in successfully",
-            api_key: checkUser.api_key
+            api_key: checkUser.api_key,
+            api_token: checkUser.api_token
         })  
     },
 

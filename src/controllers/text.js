@@ -4,15 +4,9 @@ const __srcpath = __dirname.replace("\\controllers", "")
 // db
 const db = require(__srcpath + "/models/index.js")
 
-// utilities
-const fileUtil = require(__srcpath + "/utilities/file.js")
-
 // imports
 const axios = require("axios")
 const baseUrl = "https://api-inference.huggingface.co/models/"
-const path = require("path")
-const fs = require("fs")
-const uuid = require("uuid").v4
 const { Op } = require("sequelize");
 
 module.exports = {
