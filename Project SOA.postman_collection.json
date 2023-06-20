@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "f591c83f-a30b-484e-89da-9a32933689aa",
+		"_postman_id": "b7386465-b3af-4870-90b9-133e2332c125",
 		"name": "Project SOA",
 		"description": "Project SOA",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "22732825"
+		"_exporter_id": "24656368"
 	},
 	"item": [
 		{
@@ -2453,8 +2453,8 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 13:21:30 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -2462,27 +2462,23 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "195"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"c3-jmZHBUL28ectCIkg7WXvD26YlBY\""
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 20 Jun 2023 03:20:12 GMT"
+							"value": "174"
 						},
 						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"ae-JfP37uIzHngkQednyq2FQSkxm4Y\""
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Text analyzed successfully, the text has been classified as POSITIVE\",\n    \"result\": [\n        [\n            {\n                \"label\": \"POSITIVE\",\n                \"score\": 0.9997164607048035\n            },\n            {\n                \"label\": \"NEGATIVE\",\n                \"score\": 0.00028346170438453555\n            }\n        ]\n    ]\n}"
+					"body": "{\n    \"message\": \"Text analyzed successfully\",\n    \"result\": \"POSITIVE\",\n    \"details\": [\n        [\n            {\n                \"label\": \"POSITIVE\",\n                \"score\": 0.9997164607048035\n            },\n            {\n                \"label\": \"NEGATIVE\",\n                \"score\": 0.00028346170438453555\n            }\n        ]\n    ]\n}"
 				},
 				{
 					"name": "Endpoint 9 - Failed (Invalid Header)",
