@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "b7386465-b3af-4870-90b9-133e2332c125",
+		"_postman_id": "f591c83f-a30b-484e-89da-9a32933689aa",
 		"name": "Project SOA",
 		"description": "Project SOA",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24656368"
+		"_exporter_id": "22732825"
 	},
 	"item": [
 		{
@@ -3513,7 +3513,7 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Response body is correct\", function () {\r",
-							"    pm.expect(jsonData.message).to.eql(\"Bot Profile has been updated for \"+pm.variables.get(\"id_chat\"));\r",
+							"    pm.expect(jsonData.message).to.eql(\"Bot Profile has been updated for \"+pm.variables.get(\"chat_room_id\"));\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -4278,7 +4278,7 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Response body is correct\", function () {\r",
-							"    pm.expect(jsonData.message).to.eql(\"Chat log of chat \"+pm.variables.get(\"id_chat\"));\r",
+							"    pm.expect(jsonData.message).to.eql(\"Chat log of chat \"+pm.variables.get(\"chat_room_id\"));\r",
 							"});"
 						],
 						"type": "text/javascript"
