@@ -274,7 +274,7 @@ module.exports = {
         let result_sentiment = result[0][0].score > result[0][1].score ? result[0][0].label : result[0][1].label;
 
         const history = await db.Historytext.create({
-            text:text,
+            text:text.text,
             result:result_sentiment,
             type:"SA",
             datetime:new Date()
@@ -318,14 +318,15 @@ module.exports = {
 
         let url = baseUrl + "gpt2"
 
+        const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
+
         const history = await db.Historytext.create({
-            text:text,
+            text:text.text,
             result:result[0].generated_text.replace(text.text, ""),
             type:"TG",
             datetime:new Date()
         });
 
-        const result = (await axios.post(url, {inputs: text.text}, {headers: {"Authorization": "Bearer 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"}})).data
         return res.status(200).json({
             message: "Text generated successfully",
             result: {
@@ -362,7 +363,7 @@ module.exports = {
 
         if(user.api_token < 1) return res.status(403).json({message:"Please recharge your API Token"})
         
-	user.api_token -= 1;
+	    user.api_token -= 1;
 
         await user.save();
 
@@ -375,16 +376,16 @@ module.exports = {
         let obj_viewed = []
 
         result.forEach(entity => {
-            text_anonymized.replace(entity.word, `<${entity.entity_group}>`)
+            text_anonymized = text_anonymized.replace(entity.word, `<${entity.entity_group}>`)
 
             obj_viewed.push({
                 entity:`${entity.word} => ${entity.entity_group}`,
-                confident:`${(score*100).toFixed(2)}%`
+                confident:`${(entity.score*100).toFixed(2)}%`
             })
         });
 
         const history = await db.Historytext.create({
-            text:text,
+            text:text.text,
             result:text_anonymized,
             type:"NER",
             datetime:new Date()
@@ -417,7 +418,7 @@ module.exports = {
         if (!type || type == "") {
             let all_text_history = await db.Historytext.findAll();
 
-            history.forEach(all_text_history => {
+            all_text_history.forEach(history => {
                 let type_text_analysis = history.type == "SA" ? "Sentiment Analysis" : (history.type == "TG" ? "Text Generation" : "Named Entity Recognition / Anonymization") 
                 obj_viewed.push({
                     type : type_text_analysis,
@@ -433,7 +434,7 @@ module.exports = {
                 }
             });
 
-            history.forEach(all_text_history => {
+            all_text_history.forEach(history => {
                 let type_text_analysis = history.type == "SA" ? "Sentiment Analysis" : (history.type == "TG" ? "Text Generation" : "Named Entity Recognition / Anonymization") 
                 obj_viewed.push({
                     type : type_text_analysis,
