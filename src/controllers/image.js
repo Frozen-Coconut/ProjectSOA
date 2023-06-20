@@ -36,7 +36,7 @@ module.exports = {
             }
         }
         if (!req.file) {
-            return res.status(400).json({message: "Invalid image"})
+            return res.status(400).json({message: "Image is required"})
         }
         fileUtil.mkdirIfNotExists(path.join(basePath, user.username))
         let id = uuid()

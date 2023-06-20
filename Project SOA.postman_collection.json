@@ -2416,6 +2416,66 @@
 			},
 			"response": [
 				{
+					"name": "Endpoint 9",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/tasks/sentiment-analysis/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"sentiment-analysis",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "195"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c3-jmZHBUL28ectCIkg7WXvD26YlBY\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:20:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text analyzed successfully, the text has been classified as POSITIVE\",\n    \"result\": [\n        [\n            {\n                \"label\": \"POSITIVE\",\n                \"score\": 0.9997164607048035\n            },\n            {\n                \"label\": \"NEGATIVE\",\n                \"score\": 0.00028346170438453555\n            }\n        ]\n    ]\n}"
+				},
+				{
 					"name": "Endpoint 9 - Failed (Invalid Header)",
 					"originalRequest": {
 						"method": "GET",
@@ -2641,6 +2701,66 @@
 				}
 			},
 			"response": [
+				{
+					"name": "Endpoint 10",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/tasks/text-generation/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"text-generation",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "206"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ce-k0N4AOduK87UYjBB8jGAcfqIPFk\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:22:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text generated successfully\",\n    \"result\": {\n        \"input\": \"Hello, World!\",\n        \"generated\": \"\\n\\nI'm sorry, but I'm not sure what to do.\\n\",\n        \"output\": \"Hello, World!\\n\\nI'm sorry, but I'm not sure what to do.\\n\"\n    }\n}"
+				},
 				{
 					"name": "Endpoint 10 - Failed (Invalid Header)",
 					"originalRequest": {
@@ -2875,6 +2995,70 @@
 				}
 			},
 			"response": [
+				{
+					"name": "Endpoint 11",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/named-entity-recognition/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"named-entity-recognition",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "180"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b4-BxvKPnW62OKDp0kvhO13q2KszDw\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:23:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text has been identified\",\n    \"result\": {\n        \"list_entity\": [\n            {\n                \"entity\": \"Hello, World! => MISC\",\n                \"confident\": \"79.22%\"\n            }\n        ],\n        \"original_text\": \"Hello, World!\",\n        \"anonymized_text\": \"<MISC>\"\n    }\n}"
+				},
 				{
 					"name": "Endpoint 11 - Failed (Invalid Header)",
 					"originalRequest": {
@@ -4406,7 +4590,7 @@
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/C:/Users/default/Desktop/image.jpeg"
+							"src": "/C:/Users/Default/Desktop/image.png"
 						}
 					]
 				},
@@ -4439,7 +4623,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/default/Desktop/image.jpeg"
+									"src": "/C:/Users/Default/Desktop/image.png"
 								}
 							]
 						},
@@ -4459,8 +4643,8 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:43:08 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -4471,20 +4655,230 @@
 							"value": "85"
 						},
 						{
+							"key": "ETag",
+							"value": "W/\"55-6FY0cy0TOL2tbZfqhM3KBtQF2s8\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:00:47 GMT"
+						},
+						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"55-OtmmzpJ1IXK9IUFCbwi1Waev838\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Image uploaded successfully\",\n    \"id\": \"6fa5d04b-cfa0-486c-9a29-80729caf6796\"\n}"
+					"body": "{\n    \"message\": \"Image uploaded successfully\",\n    \"id\": \"b0ba1331-6c61-4353-a6e6-efa57c5bbc3a\"\n}"
+				},
+				{
+					"name": "Endpoint 16 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Default/Desktop/image.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/images",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"images"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:00:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 16 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Default/Desktop/image.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/images",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"images"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:01:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 16 - Failed (Invalid Body)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Default/Desktop/image.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/images",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"images"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1f-J+J42eSr3Y8nemOWwtPflFP8rNo\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:04:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Image is required\"\n}"
 				}
 			]
 		},
@@ -4559,8 +4953,8 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:50:15 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -4571,20 +4965,202 @@
 							"value": "40"
 						},
 						{
+							"key": "ETag",
+							"value": "W/\"28-UlCcgBOXM5yPY4W9NDLAsyt+Nmk\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:07:29 GMT"
+						},
+						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"28-UlCcgBOXM5yPY4W9NDLAsyt+Nmk\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
 					"body": "{\n    \"message\": \"Image deleted successfully\"\n}"
+				},
+				{
+					"name": "Endpoint 17 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/images/{{image_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"images",
+								"{{image_id}}"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:06:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 17 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/images/{{image_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"images",
+								"{{image_id}}"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:06:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 17 - Failed (Invalid Image ID)",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/images/abcde",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"images",
+								"abcde"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-f87tZbqZ6ci0o0TBq+RNplYn7iY\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:07:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Image not found\"\n}"
 				}
 			]
 		},
@@ -4680,8 +5256,8 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:49:25 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -4692,20 +5268,233 @@
 							"value": "168"
 						},
 						{
+							"key": "ETag",
+							"value": "W/\"a8-l7SosrBKSOM8fKXIx3C8NKbzirQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:10:25 GMT"
+						},
+						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"a8-uxI9q95NaGo4K/QM+z0SMS5QEQQ\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Image generated successfully\",\n    \"url\": \"https://project-soa-istts-2023-hugging-face.glitch.me/cdn/3818d77a-a094-4b39-a06a-8ee30ae03e69.jpg\",\n    \"api_token_left\": 6\n}"
+					"body": "{\n    \"message\": \"Image generated successfully\",\n    \"url\": \"https://project-soa-istts-2023-hugging-face.glitch.me/cdn/568de7ca-82fc-4472-9e7e-0c381ee6dbdb.jpg\",\n    \"api_token_left\": 9\n}"
+				},
+				{
+					"name": "Endpoint 18 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Himalayan mountain range",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/text-to-image",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"text-to-image"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:10:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 18 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Himalayan mountain range",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/text-to-image",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"text-to-image"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:10:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 18 - Failed (Invalid Body)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Himalayan mountain range",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/text-to-image",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"text-to-image"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e-wKSJOgLzhWysxKblsYF3P9JbuyI\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:11:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Text is required\"\n}"
 				}
 			]
 		},
@@ -4800,8 +5589,8 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:49:40 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -4809,23 +5598,305 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "334"
+							"value": "375"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"177-mtIuIfdskEMmY0Qk0SYceRBuhus\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:14:05 GMT"
 						},
 						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"14e-TbWAy9tAU4b2Eh6J0RtUdTG3vjM\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Image classified successfully\",\n    \"data\": [\n        {\n            \"score\": 0.870073676109314,\n            \"label\": \"valley, vale\"\n        },\n        {\n            \"score\": 0.11955441534519196,\n            \"label\": \"alp\"\n        },\n        {\n            \"score\": 0.0012398642720654607,\n            \"label\": \"mountain tent\"\n        },\n        {\n            \"score\": 0.0007626164588145912,\n            \"label\": \"lakeside, lakeshore\"\n        },\n        {\n            \"score\": 0.0005507050664164126,\n            \"label\": \"volcano\"\n        }\n    ],\n    \"api_token_left\": 5\n}"
+					"body": "{\n    \"message\": \"Image classified successfully\",\n    \"data\": [\n        {\n            \"score\": 0.9972864389419556,\n            \"label\": \"crossword puzzle, crossword\"\n        },\n        {\n            \"score\": 0.0001830808905651793,\n            \"label\": \"digital watch\"\n        },\n        {\n            \"score\": 0.00012262293603271246,\n            \"label\": \"pick, plectrum, plectron\"\n        },\n        {\n            \"score\": 0.00008144707680912688,\n            \"label\": \"comic book\"\n        },\n        {\n            \"score\": 0.00008027594594750553,\n            \"label\": \"maze, labyrinth\"\n        }\n    ],\n    \"api_token_left\": 8\n}"
+				},
+				{
+					"name": "Endpoint 19 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "image_id",
+									"value": "{{image_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/image-classification",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"image-classification"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:14:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 19 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "image_id",
+									"value": "{{image_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/image-classification",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"image-classification"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:14:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 19 - Failed (Invalid Body)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "image_id",
+									"value": "{{image_id}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/image-classification",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"image-classification"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"22-Vw4OVMA7JaSw6x+f8TdP+oySBuQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:15:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Image ID is required\"\n}"
+				},
+				{
+					"name": "Endpoint 19 - Failed (Invalid Image ID)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "image_id",
+									"value": "abcde",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/image-classification",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"image-classification"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-f87tZbqZ6ci0o0TBq+RNplYn7iY\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:15:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Image not found\"\n}"
 				}
 			]
 		},
@@ -4920,8 +5991,8 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Date",
-							"value": "Fri, 16 Jun 2023 05:49:48 GMT"
+							"key": "X-Powered-By",
+							"value": "Express"
 						},
 						{
 							"key": "Content-Type",
@@ -4929,23 +6000,305 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "1231"
+							"value": "1106"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"452-GVB82F3XvcRjV2upUmZEtr424Nk\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:18:04 GMT"
 						},
 						{
 							"key": "Connection",
 							"value": "keep-alive"
 						},
 						{
-							"key": "x-powered-by",
-							"value": "Express"
-						},
-						{
-							"key": "etag",
-							"value": "W/\"4cf-kUQ28N2CZQ6u2+OQHRwD6HjboaA\""
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Image segmented successfully\",\n    \"data\": [\n        {\n            \"score\": 1,\n            \"label\": \"sky\",\n            \"mask\": \"iVBORw0KGgoAAAANSUhEUgAAANEAAAB5CAAAAACCHpuwAAABQklEQVR4nO3X2w6CMBBF0Y7x/38ZHwCFtIXpDQ5mrycTUWZzx6bwZ153D9AdRfoo0keRPor0UaSPIn0U6fu/onfDby2EoPfCWL+PzEKYq7TUFtmaIpdUV2SbDrWkmiLbR4gllRdZVKCVVFoU9wSxpMIiqdnTyopyQUqhRUX5wYWSSoqOxtZJ8hclrwmbr1sn6cVddDqxSpKz6GQHzcu0TdKLr8g3rEaSp8izg+YFWybpJVNU+Sjqbh/IUq9sy1zT5rPfpe+AFq8vVdS6oa9q2s+5rjVR1H7kXJKUGHM+qKK1dzkVxjdlx4yuDH3O7eGXiLNHzOl8wQoDd9TBnKO3ZeI07RCq+MzclHU49L23xLKu5zyLHdzkf3cZ978pFC22YQ1jCRWFb5TWUAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwaB+2sRh+ZvdduwAAAABJRU5ErkJggg==\"\n        },\n        {\n            \"score\": 1,\n            \"label\": \"mountain\",\n            \"mask\": \"iVBORw0KGgoAAAANSUhEUgAAANEAAAB5CAAAAACCHpuwAAABdklEQVR4nO2Y25KCMBAFYf//n+MLtYWQYCYXaK3uFwuBzOkMBHFZRERERERE5DdZO85NnefPoT1R6h1gEq2BUvcIs2jLk/YbMKWWOOmwzVKKpzn6NA0ykWiYjE/DKDP5ix2eF0IRMyoJkURDRuXgIKWI0VVsjlL9Pf0pM2V1qO7RxyZQulQ5s1VxGV2q61Hd/DO6VDOv9UkJXSpkSLsdoal/3imbYP/qE76UbnVK53q5+r33w11O7znXw2fxwBZuUSq9A5yLD1mx5jsVY55Kj1qCJzuVY67prfzQR8pEqYuc6+THYuaqHiB6FXq2UbFuz8mXmZ8y2qqHjq6L+qzRliHzXTrsC/wSAxht7MU6UoGMln+prkwsoxEE/936AjTioxEfjfhoxEcjPhrx0YiPRnw04qMRH434aMRHIz4a8dGIj0Z8NOKjER+N+GjERyM+GvHRiI9GfDTioxEfjfhoxEcjPhrx0YiPRnw04qMRH434aMTn94xeOyo0pISZX9AAAAAASUVORK5CYII=\"\n        }\n    ],\n    \"api_token_left\": 4\n}"
+					"body": "{\n    \"message\": \"Image segmented successfully\",\n    \"data\": [\n        {\n            \"score\": 1,\n            \"label\": \"wall\",\n            \"mask\": \"iVBORw0KGgoAAAANSUhEUgAAAFcAAABXCAAAAABUo4awAAAAxElEQVR4nO3Y3Q6DIAwF4NPF93/l7mJmShXW1ppIdnqjBvnA4g8iiltiCdcQ2K7Id28rkX5/pVsyDgWAV7LyIAQY9nd3Vif0tFxd7mkjh0p7PeE6Gl29QreJG8aNLl26dKvc0Hcp4IbeqJk8iKPnCdeVjweM2zU3Oxv55RbB/B7TpUuXLl26dOk+y7XrZ9tiiiA49W8dbY/MbDINmzwUzX7nGze6Pjd7g0ydh+NFp5+TqfPwx655/342Bf/i/J+nS5duL96aaRipjgOtWgAAAABJRU5ErkJggg==\"\n        },\n        {\n            \"score\": 1,\n            \"label\": \"painting\",\n            \"mask\": \"iVBORw0KGgoAAAANSUhEUgAAAFcAAABXCAAAAABUo4awAAAAXklEQVR4nO3WQQrAIAwEQO3//5zeelApVFKoduZmAguKSkoBACBF5MQcbwUDAPAptVnHVY1BdzY3aty1H2jm1LQhtZ9/5e6QO3tBlj6HftPT72Tpc/hxbvP/jooAqU5TyQseL6GOXwAAAABJRU5ErkJggg==\"\n        },\n        {\n            \"score\": 1,\n            \"label\": \"column\",\n            \"mask\": \"iVBORw0KGgoAAAANSUhEUgAAAFcAAABXCAAAAABUo4awAAAAVklEQVR4nO3VOQ6AMAwAQZv//zl0CCknERRIM63jdZmIb+TjjVLtlEZt0C390VBGRBybywPlik9fdWRznkvd5pFq617f6C4cfTEI8DO7/xIAAAAAAEydwrsKBicbBvIAAAAASUVORK5CYII=\"\n        },\n        {\n            \"score\": 1,\n            \"label\": \"skyscraper\",\n            \"mask\": \"iVBORw0KGgoAAAANSUhEUgAAAFcAAABXCAAAAABUo4awAAAAL0lEQVR4nO3MsQ0AMAjAMNT/f4aRsYgR2XOUCACAlvlv3mI7iRbfEV8AAAAA4JoCvlsDCAacDEYAAAAASUVORK5CYII=\"\n        }\n    ],\n    \"api_token_left\": 7\n}"
+				},
+				{
+					"name": "Endpoint 20 - Failed (Invalid Header)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "image_id",
+									"value": "{{image_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/image-segmentation",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"image-segmentation"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21-t2uxpGAqF0IGZgD2VtHnQp4bVnc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:17:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"API Key is required\"\n}"
+				},
+				{
+					"name": "Endpoint 20 - Failed (Invalid API Key)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcde",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "image_id",
+									"value": "{{image_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/image-segmentation",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"image-segmentation"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-mmRSeO9uba2rhQtGfy4YjixIkt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:17:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid API Key\"\n}"
+				},
+				{
+					"name": "Endpoint 20 - Failed (Invalid Body)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "image_id",
+									"value": "{{image_id}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/image-segmentation",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"image-segmentation"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"22-Vw4OVMA7JaSw6x+f8TdP+oySBuQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:17:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Image ID is required\"\n}"
+				},
+				{
+					"name": "Endpoint 20 - Failed (Invalid Image ID)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "image_id",
+									"value": "abcde",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/image-segmentation",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"image-segmentation"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-f87tZbqZ6ci0o0TBq+RNplYn7iY\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 20 Jun 2023 03:17:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Image not found\"\n}"
 				}
 			]
 		},
