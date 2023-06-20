@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b368c069-a233-4e15-8e84-53f7af3720e8",
+		"_postman_id": "b7386465-b3af-4870-90b9-133e2332c125",
 		"name": "Project SOA",
 		"description": "Project SOA",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -55,7 +55,8 @@
 						"users",
 						"register"
 					]
-				}
+				},
+				"description": "This request is used to create a new account for this API. To create a new account you need a unique username and a password."
 			},
 			"response": [
 				{
@@ -303,7 +304,8 @@
 						"users",
 						"upgrade"
 					]
-				}
+				},
+				"description": "This request is used to recharge your API Token. To recharge your API Token, you need a valid API Key to prove who you are and the value of the token you want to recharge."
 			},
 			"response": [
 				{
@@ -749,7 +751,8 @@
 						"api",
 						"users"
 					]
-				}
+				},
+				"description": "This request is used to get your API Key. To get your API Key, you need your registered username and your password."
 			},
 			"response": [
 				{
@@ -1056,7 +1059,8 @@
 						"api",
 						"texts"
 					]
-				}
+				},
+				"description": "This request is used to create a text to be used for some tasks. To create a text, you need a valid API Key to prove who you are and the text you want to create."
 			},
 			"response": [
 				{
@@ -1368,7 +1372,8 @@
 						"texts",
 						"1"
 					]
-				}
+				},
+				"description": "This request is used to update a text you have created. To update the text, you need a valid API Key to prove who you are, the ID of the text you want to update, and the new text to replace it."
 			},
 			"response": [
 				{
@@ -1743,7 +1748,8 @@
 						"texts",
 						"1"
 					]
-				}
+				},
+				"description": "This request is used to delete a text you have created. To delete the text, you need a valid API Key to prove who you are, the ID of the text you want to delete."
 			},
 			"response": [
 				{
@@ -1954,7 +1960,8 @@
 							"value": "hello"
 						}
 					]
-				}
+				},
+				"description": "This request is used to get texts you have created based on a query. To get the texts, you need a valid API Key to prove who you are and the query to filter the texts."
 			},
 			"response": [
 				{
@@ -2189,7 +2196,8 @@
 						"texts",
 						"all-text"
 					]
-				}
+				},
+				"description": "This request is used to get all texts you have created based on a query. To get the texts, you need a valid API Key to prove who you are."
 			},
 			"response": [
 				{
@@ -2412,7 +2420,8 @@
 						"sentiment-analysis",
 						"1"
 					]
-				}
+				},
+				"description": "This request is used to do a sentiment analysis task on a text that you have created. To do the task, you need a valid API Key to prove who you are and the id of the text. To use this request, make sure you have at least 1 API Token left."
 			},
 			"response": [
 				{
@@ -2698,7 +2707,8 @@
 						"text-generation",
 						"1"
 					]
-				}
+				},
+				"description": "This request is used to do a text generation task based on a text that you have created. To do the task, you need a valid API Key to prove who you are and the id of the text. To use this request, make sure you have at least 1 API Token left."
 			},
 			"response": [
 				{
@@ -2992,7 +3002,8 @@
 						"named-entity-recognition",
 						"1"
 					]
-				}
+				},
+				"description": "This request is used to do a named entity recognition task on a text that you have created. To do the task, you need a valid API Key to prove who you are and the id of the text. To use this request, make sure you have at least 1 API Token left."
 			},
 			"response": [
 				{
@@ -3006,10 +3017,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
 						"url": {
 							"raw": "{{host}}/api/tasks/named-entity-recognition/1",
 							"host": [
@@ -3071,10 +3078,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
 						"url": {
 							"raw": "{{host}}/api/tasks/named-entity-recognition/1",
 							"host": [
@@ -3135,10 +3138,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
 						"url": {
 							"raw": "{{host}}/api/tasks/named-entity-recognition/1",
 							"host": [
@@ -3199,10 +3198,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
 						"url": {
 							"raw": "{{host}}/api/tasks/named-entity-recognition/12345",
 							"host": [
@@ -3308,7 +3303,8 @@
 						"chats",
 						"create-new-chat"
 					]
-				}
+				},
+				"description": "This request is used to create a chat room for a chat with the bot. To create a chat room, you need a valid API Key to prove who you are."
 			},
 			"response": [
 				{
@@ -3563,7 +3559,8 @@
 						"create-new-profile-bot",
 						"{{chat_room_id}}"
 					]
-				}
+				},
+				"description": "This request is used to create a profile for the chat room bot. To create a profile, you need a valid API Key to prove who you are, the chat room ID, and a profile description."
 			},
 			"response": [
 				{
@@ -3971,7 +3968,8 @@
 						"chatting",
 						"{{chat_room_id}}"
 					]
-				}
+				},
+				"description": "This request is used to chat with the bot you have created. To chat with the bot, you need a valid API Key to prove who you are, the chat room ID, and the chat you want to send. To use this request, make sure you have at least 1 API Token left."
 			},
 			"response": [
 				{
@@ -4307,7 +4305,8 @@
 						"historys",
 						"{{chat_room_id}}"
 					]
-				}
+				},
+				"description": "This request is used to see the chat with the bot you have created. To see the chat history, you need a valid API Key to prove who you are and the chat room ID."
 			},
 			"response": [
 				{
@@ -4603,7 +4602,8 @@
 						"api",
 						"images"
 					]
-				}
+				},
+				"description": "This request is used to upload an image to be used for some tasks. To upload an image, you need a valid API Key to prove who you are and an image."
 			},
 			"response": [
 				{
@@ -4922,7 +4922,8 @@
 						"images",
 						"{{image_id}}"
 					]
-				}
+				},
+				"description": "This request is used to delete an image you have uploaded. To delete an image, you need a valid API Key to prove who you are and the image ID."
 			},
 			"response": [
 				{
@@ -5215,7 +5216,8 @@
 						"tasks",
 						"text-to-image"
 					]
-				}
+				},
+				"description": "This request is used to do an image generation task based on a text. To do the task, you need a valid API Key to prove who you are and a text to send. To use this request, make sure you have at least 1 API Token left."
 			},
 			"response": [
 				{
@@ -5548,7 +5550,8 @@
 						"tasks",
 						"image-classification"
 					]
-				}
+				},
+				"description": "This request is used to do an image classification task on an image you have uploaded. To do the task, you need a valid API Key to prove who you are and the image ID. To use this request, make sure you have at least 1 API Token left."
 			},
 			"response": [
 				{
@@ -5950,7 +5953,8 @@
 						"tasks",
 						"image-segmentation"
 					]
-				}
+				},
+				"description": "This request is used to do an image segmentation task on an image you have uploaded. To do the task, you need a valid API Key to prove who you are and the image ID. To use this request, make sure you have at least 1 API Token left."
 			},
 			"response": [
 				{
@@ -6325,7 +6329,8 @@
 					"host": [
 						"{{cdn_url}}"
 					]
-				}
+				},
+				"description": "This request is used to get the image you generated using a CDN link. To get the image, you need the CDN link."
 			},
 			"response": []
 		}
