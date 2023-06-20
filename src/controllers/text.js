@@ -83,6 +83,8 @@ module.exports = {
         try {
             await schema.validateAsync(req.body);
         } catch (error) {
+            console.log(id)
+            console.log(text)
             return res.status(401).send({message:error.details[0].message})
         }
         if(!api_key){
@@ -281,8 +283,9 @@ module.exports = {
         });
         
         return res.status(200).json({
-	        message: `Text analyzed successfully, the text has been classified as ${result_sentiment}`,
-            result
+	        message: `Text analyzed successfully`,
+            result: result_sentiment,
+            details: result
         });
     },
     endpoint10: async (req, res) => {
