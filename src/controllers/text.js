@@ -81,7 +81,7 @@ module.exports = {
         });
 
         try {
-            await schema.validateAsync(req.body);
+            await schema.validateAsync({text, id});
         } catch (error) {
             console.log(id)
             console.log(text)
